@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escudo Digital Cidadão</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4 mb-5">
+        <div class="text-center mb-4">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                 <img src="{{ url_for('static', filename='escudo.jpg') }}" alt="Escudo Inovador" width="90" class="me-3 drop-shadow">
+                 <h1 class="text-primary mb-0">Escudo Digital Cidadão</h1>
+            </div>
+            <p class="lead">Aprenda a se proteger contra fraudes e engenharia social.</p>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <ul class="nav nav-pills nav-justified mb-4" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <!-- O botão agora só fica ativo se o verificador não estiver em uso -->
+                <button class="nav-link {% if not mostrar_analise %}active{% endif %}" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab">📞 Treinamento de Ligações</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if mostrar_analise %}active{% endif %}" id="osint-tab" data-bs-toggle="pill" data-bs-target="#osint" type="button" role="tab">🌐 Verificador de Sites</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="bo-tab" data-bs-toggle="pill" data-bs-target="#bo" type="button" role="tab">📝 Como Registrar Ocorrência</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Módulo 1: Simulador de Ligações -->
+            <div class="tab-pane fade {% if not mostrar_analise %}show active{% endif %}" id="quiz" role="tabpanel">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">Simulador Prático: Não caia na lábia</div>
+                    <div class="card-body text-center" id="quiz-container">
+                        <h5 id="pergunta-texto" class="mb-4 text-start"></h5>
+                        <div id="botoes-opcoes" class="d-grid gap-2"></div>
+                        <div id="feedback-container" class="mt-4 p-3 rounded d-none"></div>
+                        <button id="btn-proximo" class="btn btn-secondary mt-3 d-none" onclick="proximaPergunta()">Próxima Situação ➔</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 2: Verificador de Sites -->
+            <div class="tab-pane fade {% if mostrar_analise %}show active{% endif %}" id="osint" role="tabpanel">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">Análise de Idade do Domínio</div>
+                    <div class="card-body">
+                        <form action="/analise" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Cole o link recebido (ex: www.detran-pagamentos.com):</label>
+                                <input type="text" class="form-control" name="url" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Consultar Registro</button>
+                        </form>
+                        {% if alerta %}
+                        <div class="alert {{ classe_alerta }} mt-4">
+                            <strong>Analisado: {{ url_testada }}</strong><br>{{ alerta }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 3: Ocorrência e Cartilha -->
+            <div class="tab-pane fade" id="bo" role="tabpanel">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-danger text-white">Caiu no golpe? Como agir:</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">📸 <strong>Tire Prints:</strong> Capture a tela de todas as conversas e perfis.</li>
+                            <li class="list-group-item">🔗 <strong>Salve os Links:</strong> Anote a URL exata do site falso.</li>
+                            <li class="list-group-item">📄 <strong>Guarde os Comprovantes:</strong> Se você chegou a realizar algum pix ou transferência bancária, Salve os comprovantes, de preferência em PDF.</li>
+                            <li class="list-group-item">🚫 <strong>NÃO APAGUE NADA:</strong> A investigação precisa desses rastros digitais. Procure a delegacia com esse material.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="/baixar_cartilha" class="btn btn-success btn-lg w-100">📥 Baixar Cartilha de Proteção</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const perguntas = [
+            {
+                cenario: "[Ligação 1] 'Olá, aqui é da segurança do seu banco. Identificamos uma compra suspeita de R$ 4.500,00. Para cancelar, confirme sua senha ou instale nosso app de proteção.'",
+                opcoes: ["A) Confirma a senha rapidamente.", "B) Instala o aplicativo recomendado.", "C) Mantém a calma, desliga e entra em contato com canais oficiais do seu banco." "D) Realiza os comandos do atendente, como de digitar certos scripts." ],
+                correta: 2,
+                feedbackCorreto: "CORRETO! O banco nunca pede senha ou instalação de app por telefone.",
+                feedbackIncorreto: "ERRO CRÍTICO! Você deu acesso ao golpista."
+            },
+            {
+                cenario: "[Ligação 2] 'Boa tarde, falo do WhatsApp. Sua conta foi clonada. Para resolver, vou enviar um código de 6 dígitos por SMS. Me informe o código.'",
+                opcoes: ["A) Informa o código para recuperar a conta.", "B) Pergunta o nome do atendente antes.", "C) Desliga. O WhatsApp não liga pedindo códigos."],
+                correta: 2,
+                feedbackCorreto: "EXATO! Esse código é a chave de acesso. Nunca compartilhe.",
+                feedbackIncorreto: "FALHOU! Você acabou de entregar seu WhatsApp para o golpista."
+            },
+            {
+                cenario: "[Ligação 3] 'Mãe/Pai, sou eu. Meu celular quebrou, estou usando esse número provisório. Preciso de um PIX urgente para pagar o conserto.'",
+                opcoes: ["A) Faz o PIX rapidamente.", "B) Pede para mandar um áudio.", "C) Não faz o PIX, faz chamada de vídeo ou liga no número antigo."],
+                correta: 2,
+                feedbackCorreto: "MUITO BEM! Sempre confirme por chamada de vídeo.",
+                feedbackIncorreto: "CUIDADO! Golpistas usam fotos roubadas. Ligue para o número antigo!"
+            }
+        ];
+
+        let atual = 0;
+        const perguntaTexto = document.getElementById("pergunta-texto");
+        const botoesContainer = document.getElementById("botoes-opcoes");
+        const feedbackContainer = document.getElementById("feedback-container");
+        const btnProximo = document.getElementById("btn-proximo");
+
+        function carregarPergunta() {
+            feedbackContainer.classList.add("d-none");
+            btnProximo.classList.add("d-none");
+            perguntaTexto.innerText = perguntas[atual].cenario;
+            botoesContainer.innerHTML = "";
+
+            perguntas[atual].opcoes.forEach((opcao, index) => {
+                let btn = document.createElement("button");
+                btn.className = "btn btn-outline-primary text-start p-3";
+                btn.innerText = opcao;
+                btn.onclick = () => verificarResposta(index);
+                botoesContainer.appendChild(btn);
+            });
+        }
+
+        function verificarResposta(index) {
+            let acertou = index === perguntas[atual].correta;
+            feedbackContainer.classList.remove("d-none", "bg-success", "bg-danger", "text-white");
+
+            if(acertou) {
+                feedbackContainer.classList.add("bg-success", "text-white");
+                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackCorreto}</strong>`;
+            } else {
+                feedbackContainer.classList.add("bg-danger", "text-white");
+                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackIncorreto}</strong>`;
+            }
+
+            // Desabilita os botões
+            Array.from(botoesContainer.children).forEach(btn => btn.disabled = true);
+
+            if (atual < perguntas.length - 1) {
+                btnProximo.classList.remove("d-none");
+            } else {
+                btnProximo.innerText = "Treinamento Concluído!";
+                btnProximo.classList.remove("btn-secondary", "d-none");
+                btnProximo.classList.add("btn-success");
+                btnProximo.onclick = null;
+            }
+        }
+
+        function proximaPergunta() {
+            atual++;
+            carregarPergunta();
+        }
+
+        carregarPergunta();
+    </script>
+</body>
+</html>
