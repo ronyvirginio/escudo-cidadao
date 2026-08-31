@@ -30,6 +30,7 @@ Este projeto está sob a licença MIT.
 
 ---
 **Desenvolvido por Ronieryson Pereira Virginio**
+* Oficial Investigador de Polícia Civil - [PCES]
 * Estudante de Ciência da Computação
 * Pós Graduado em Big Data e Inteligência Artificial
 * Graduado em Ciências Contábeis
