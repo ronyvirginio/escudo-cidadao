@@ -103,7 +103,19 @@
                 feedbackIncorreto: "FALHOU! Você acabou de entregar seu WhatsApp para o golpista."
             },
             {
-                cenario: "[Ligação 3] 'Mãe/Pai, sou eu. Meu celular quebrou, estou usando esse número provisório. Preciso de um PIX urgente para pagar o conserto.'",
+                cenario: "[Ligação 3] Voz robótica: 'Compra aprovada de R$ 5.900,00. Digite 1 para confirmar ou 2 para cancelar com nossa central.' Ao digitar 2, um atendente pede para você instalar o aplicativo 'AnyDesk' no celular para que ele possa bloquear a fraude.",
+                opcoes: [
+                    "A) Instala o aplicativo imediatamente, pois o cancelamento precisa ser rápido e a gravação parecia oficial.",
+                    "B) Pede o número de protocolo ao atendente para ter uma segurança formal e depois instala o app.",
+                    "C) Desliga a chamada imediatamente, Entre em contato com a instutição responsável pelo cartão de crédito para verificar a validade",
+                    "D) Recusa o aplicativo, mas aceita fazer um 'PIX de validação' que o atendente prometeu devolver em dobro."
+                ],
+                correta: 2,
+                feedbackCorreto: "PERFEITO! Esse é o golpe da Falsa Central. Bancos NUNCA pedem para instalar aplicativos de suporte remoto. Ligar para o número oficial é a única defesa.",
+                feedbackIncorreto: "ERRO CRÍTICO! AnyDesk e RustDesk dão controle total do seu aparelho ao golpista. Ele vai acessar o banco e esvaziar sua conta enquanto você assiste a tela se mexer sozinha."
+            },
+            {
+                cenario: "[Ligação 4] 'Mãe/Pai, sou eu. Meu celular quebrou, estou usando esse número provisório. Preciso de um PIX urgente para pagar o conserto.'",
                 opcoes: ["A) Faz o PIX rapidamente.", "B) Pede para mandar um áudio.", "C) Não se desespera, Não faz o PIX, Busca entrar em contato direto com seu filho.", "D) Pede pra ele mandar foto do celular quebrado." ],
                 correta: 2,
                 feedbackCorreto: "MUITO BEM! Sempre confirme por chamada de vídeo.",
