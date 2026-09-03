@@ -30,6 +30,9 @@
                 <button class="nav-link {% if mostrar_analise %}active{% endif %}" id="osint-tab" data-bs-toggle="pill" data-bs-target="#osint" type="button" role="tab">🌐 Verificador de Sites</button>
             </li>
             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="impacto-tab" data-bs-toggle="pill" data-bs-target="#impacto" type="button" role="tab">🚨 O Preço do Golpe</button>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="bo-tab" data-bs-toggle="pill" data-bs-target="#bo" type="button" role="tab">📝 Como Registrar Ocorrência</button>
             </li>
         </ul>
@@ -65,6 +68,93 @@
                             <strong>Analisado: {{ url_testada }}</strong><br>{{ alerta }}
                         </div>
                         {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo Novo: O Preço do Golpe -->
+            <div class="tab-pane fade" id="impacto" role="tabpanel">
+                <!-- Alerta Máximo -->
+                <div class="alert bg-danger text-white shadow-sm text-center mb-4">
+                    <h2 class="fw-bold mb-3">BILHÕES DE REAIS ROUBADOS TODOS OS ANOS</h2>
+                    <p class="lead mb-0">Existem centenas de formas de cair em um golpe hoje. O prejuízo financeiro é apenas o começo do pesadelo.</p>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <!-- Coluna da Dor de Cabeça -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-danger shadow-sm">
+                            <div class="card-header bg-dark text-white fw-bold">
+                                A Dor de Cabeça Real
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">Quando um golpista invade sua vida digital, o estrago é devastador:</p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">🏦 <strong>Burocracia Extrema:</strong> Horas perdidas em agências bancárias tentando provar que você foi vítima.</li>
+                                    <li class="list-group-item">💳 <strong>Clonagem e Dívidas:</strong> Cartões de crédito clonados e descontos indevidos de empréstimos feitos em seu nome.</li>
+                                    <li class="list-group-item">⚖️ <strong>Ações Judiciais:</strong> Processos longos e desgastantes para tentar limpar seu nome no Serasa.</li>
+                                    <li class="list-group-item">🧠 <strong>Frustração Psicológica:</strong> A sensação de invasão, culpa e impotência diante da perda das suas economias.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna das Iscas -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-warning shadow-sm">
+                            <div class="card-header bg-warning text-dark fw-bold">
+                                O Arsenal dos Golpistas
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">A chantagem e a ganância são as maiores armas dos criminosos. Eles se reinventam todos os dias usando:</p>
+                                <div class="d-flex flex-wrap gap-2 mt-3">
+                                    <span class="badge bg-secondary fs-6 p-2">Jogo do Tigrinho</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Plataformas de Bets</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Falsas Vitórias Judiciais</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Leilões Fantasmas</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Falsas Centrais Bancárias</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Tarefas Remuneradas</span>
+                                </div>
+                                <div class="alert alert-warning mt-4 mb-0 fw-bold text-center">
+                                    Só existe uma defesa eficaz: A MENTALIDADE PREVENTIVA. Desconfie de tudo.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estudos e Pesquisas Recentes -->
+                <h4 class="text-primary fw-bold mb-3 border-bottom pb-2">A Epidemia no Brasil (Dados Reais)</h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h1 class="text-danger fw-bold">45 Mi</h1>
+                                <p class="fw-bold">Tentativas de Golpe</p>
+                                <p class="small text-muted">Pesquisa aponta que 45 milhões de brasileiros já sofreram tentativas de golpe online.</p>
+                                <a href="https://noticias.r7.com/jr-24h/boletim-jr-24h/video/pesquisa-aponta-que-45-milhoes-de-brasileiros-ja-sofreram-tentativas-de-golpe-online-01092026/" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: R7 (Set/2026)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h1 class="text-danger fw-bold">258</h1>
+                                <p class="fw-bold">Golpes por Hora</p>
+                                <p class="small text-muted">A incidência do crime quintuplicou no Brasil desde 2018.</p>
+                                <a href="https://www1.folha.uol.com.br/cotidiano/2026/07/brasileiros-sofreram-258-golpes-por-hora-em-2025-crime-quintuplicou-desde-2018.shtml" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: Folha (Jul/2026)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h1 class="text-danger fw-bold">Anuário</h1>
+                                <p class="fw-bold">Segurança Pública</p>
+                                <p class="small text-muted">A explosão da criminalidade digital e os golpes registrados por minuto no país.</p>
+                                <a href="https://g1.globo.com/politica/noticia/2026/07/23/golpes-registrados-por-minuto-anuario-seguranca-publica.ghtml" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: G1 (Jul/2026)</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
