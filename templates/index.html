@@ -149,17 +149,73 @@
                     const typing = document.getElementById('zap-typing');
                     const alertBox = document.getElementById('zap-alerta-final');
 
-                    let etapa = 0;
+                    let estadoAtual = 'inicio';
 
-                    // O Roteiro do Golpista
-                    const roteiro = [
-                        "Olá! Aqui é do escritório do Dr. Carlos. Falo com o(a) autor(a) do processo?",
-                        "Excelente notícia! 🎉 O juiz acabou de assinar o seu alvará. A causa foi ganha no valor de R$ 85.000,00!",
-                        "Para o dinheiro cair na sua conta hoje até as 16h, o Tribunal exige apenas o pagamento da guia de custas finais de liberação.",
-                        "A guia ficou no valor de R$ 1.250,00. Posso te enviar a chave PIX do cartório para adiantarmos isso?"
-                    ];
+                    // O Cérebro do Golpista (Máquina de Estados)
+                    const cerebroBot = {
+                        'inicio': {
+                            msg: "Olá! Aqui é do escritório do Dr. Carlos. Falo com o(a) autor(a) do processo?",
+                            proximo: function(resposta) {
+                                const texto = resposta.toLowerCase();
+                                // Se a pessoa disser que NÃO é o autor ou perguntar QUEM é
+                                if (texto.includes('não') || texto.includes('nao') || texto.includes('quem')) {
+                                    return 'parente';
+                                }
+                                // Se a pessoa perguntar QUAL processo
+                                else if (texto.includes('qual') || texto.includes('processo')) {
+                                    return 'duvida_processo';
+                                }
+                                // Se disser SIM ou qualquer outra coisa
+                                return 'noticia_boa';
+                            }
+                        },
+                        'parente': {
+                            msg: "Ah, entendo! Por favor, repasse esse recado urgente para o autor: o juiz acabou de assinar o alvará! A causa foi ganha no valor de R$ 85.000,00! 🎉",
+                            proximo: function() { return 'taxa_liberacao'; }
+                        },
+                        'duvida_processo': {
+                            msg: "O processo que estava aguardando liberação final. Tenho uma excelente notícia: o juiz acabou de assinar! A causa foi ganha no valor de R$ 85.000,00! 🎉",
+                            proximo: function() { return 'taxa_liberacao'; }
+                        },
+                        'noticia_boa': {
+                            msg: "Excelente notícia! 🎉 O juiz acabou de assinar o seu alvará. A causa foi ganha no valor de R$ 85.000,00!",
+                            proximo: function() { return 'taxa_liberacao'; }
+                        },
+                        'taxa_liberacao': {
+                            msg: "Para o dinheiro cair na sua conta hoje até as 16h, o Tribunal exige apenas o pagamento da guia de custas finais de liberação. Ficou em R$ 1.250,00.",
+                            proximo: function(resposta) {
+                                const texto = resposta.toLowerCase();
+                                // Se a vítima mandar descontar do valor que vai receber
+                                if (texto.includes('desconta') || texto.includes('tira') || texto.includes('abate')) {
+                                    return 'pressao_desconto';
+                                }
+                                // Se a vítima desconfiar e falar de golpe ou polícia
+                                else if (texto.includes('golpe') || texto.includes('policia') || texto.includes('fraude')) {
+                                    return 'pressao_golpe';
+                                }
+                                // Se a vítima aceitar ou não questionar a taxa
+                                return 'envia_pix';
+                            }
+                        },
+                        'pressao_desconto': {
+                            msg: "Infelizmente o sistema do Tribunal não permite descontar do valor do alvará, pois é uma guia federal. Se não for paga hoje, o processo volta pro fim da fila e demora meses. Posso mandar a chave PIX do cartório para não perdermos o prazo?",
+                            proximo: function() { return 'fim'; }
+                        },
+                        'pressao_golpe': {
+                            msg: "Senhor(a), somos um escritório sério, se ofender nosso trabalho vou devolver o processo pro arquivo. A liberação é oficial. Vai querer a chave PIX do cartório para receber os 85 mil hoje ou vai deixar pra lá?",
+                            proximo: function() { return 'fim'; }
+                        },
+                        'envia_pix': {
+                            msg: "Posso te enviar a chave PIX do cartório para adiantarmos isso e eu já te mandar o comprovante de transferência do Tribunal?",
+                            proximo: function() { return 'fim'; }
+                        },
+                        'fim': {
+                            msg: "",
+                            proximo: function() { return 'fim'; }
+                        }
+                    };
 
-                    // Inicia a conversa automaticamente após 1 segundo
+                    // Inicia a conversa
                     setTimeout(() => acionarBot(), 1000);
 
                     function adicionarMensagem(texto, tipo) {
@@ -167,7 +223,7 @@
                         div.className = `msg ${tipo}`;
                         div.textContent = texto;
                         chat.appendChild(div);
-                        chat.scrollTop = chat.scrollHeight; // Rola para o final
+                        chat.scrollTop = chat.scrollHeight;
                     }
 
                     function mostrarDigitando(tempo, callback) {
@@ -181,13 +237,14 @@
                     }
 
                     function acionarBot() {
-                        if (etapa < roteiro.length) {
-                            mostrarDigitando(1500 + Math.random() * 1000, () => {
-                                adicionarMensagem(roteiro[etapa], 'msg-bot');
-                                etapa++;
+                        const logicaAtual = cerebroBot[estadoAtual];
+
+                        if (estadoAtual !== 'fim') {
+                            mostrarDigitando(1500 + Math.random() * 1500, () => {
+                                adicionarMensagem(logicaAtual.msg, 'msg-bot');
                             });
                         } else {
-                            // Se o bot já falou tudo, trava o input e mostra a lição
+                            // Fim do golpe, mostra o alerta
                             setTimeout(() => {
                                 document.querySelector('.zap-footer').style.display = 'none';
                                 alertBox.style.display = 'block';
@@ -202,16 +259,13 @@
                         adicionarMensagem(texto, 'msg-user');
                         input.value = '';
 
-                        // Independente do que o cidadão responde, o golpista ignora e continua o roteiro
-                        if (etapa < roteiro.length) {
-                            acionarBot();
-                        } else {
-                            document.querySelector('.zap-footer').style.display = 'none';
-                            alertBox.style.display = 'block';
-                        }
+                        // O cérebro analisa o texto da vítima e define a próxima fala
+                        estadoAtual = cerebroBot[estadoAtual].proximo(texto);
+
+                        // O bot responde baseado no novo estado
+                        acionarBot();
                     }
 
-                    // Permite enviar apertando Enter
                     input.addEventListener("keypress", function(event) {
                         if (event.key === "Enter") {
                             event.preventDefault();
@@ -223,7 +277,7 @@
                         chat.innerHTML = '';
                         alertBox.style.display = 'none';
                         document.querySelector('.zap-footer').style.display = 'flex';
-                        etapa = 0;
+                        estadoAtual = 'inicio';
                         setTimeout(() => acionarBot(), 1000);
                     }
                 </script>
