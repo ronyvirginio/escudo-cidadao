@@ -54,25 +54,40 @@
             <!-- Módulo 2: Verificador de Sites -->
             <div class="tab-pane fade {% if mostrar_analise %}show active{% endif %}" id="osint" role="tabpanel">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">Análise de Idade do Domínio</div>
+                    <div class="card-header bg-primary text-white fw-bold">
+                        Análise Investigativa de Domínio
+                    </div>
                     <div class="card-body">
+                        <!-- Explicação didática sobre o funcionamento da ferramenta -->
+                        <div class="alert alert-info shadow-sm mb-4">
+                            <h6 class="alert-heading fw-bold">🔍 Como essa ferramenta te protege?</h6>
+                            <p class="mb-0 small">
+                                Golpistas criam sites falsos (falsos leilões, falsas páginas do Detran ou promoções) que ficam no ar por pouquíssimo tempo.
+                                Nossa ferramenta faz uma varredura automática nos registros globais da internet (WHOIS) e calcula a <strong>idade exata</strong> do site.
+                                Empresas reais e órgãos públicos possuem sites registrados há anos. Se um site suspeito foi criado há poucos dias ou meses, a chance de fraude é quase certa.
+                            </p>
+                        </div>
+
                         <form action="/analise" method="POST">
                             <div class="mb-3">
-                                <label class="form-label">Cole o link recebido (ex: www.detran-pagamentos.com):</label>
-                                <input type="text" class="form-control" name="url" required>
+                                <label class="form-label fw-bold">Cole o link suspeito aqui (ex: www.detran-pagamentos.com):</label>
+                                <input type="text" class="form-control form-control-lg" name="url" placeholder="https://" required>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">Consultar Registro</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">Consultar Registro Oficial</button>
                         </form>
+
                         {% if alerta %}
-                        <div class="alert {{ classe_alerta }} mt-4">
-                            <strong>Analisado: {{ url_testada }}</strong><br>{{ alerta }}
+                        <div class="alert {{ classe_alerta }} mt-4 shadow-sm">
+                            <strong>Analisado:</strong> {{ url_testada }}
+                            <hr>
+                            <p class="mb-0">{{ alerta }}</p>
                         </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
 
-            <!-- Módulo Novo: O Preço do Golpe -->
+            <!-- Módulo Novo: 3 Preço do Golpe -->
             <div class="tab-pane fade" id="impacto" role="tabpanel">
                 <!-- Alerta Máximo -->
                 <div class="alert bg-danger text-white shadow-sm text-center mb-4">
