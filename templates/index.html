@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="7S3BQMVMtgI4DxZ0rX-8CCIVgOqe3zlmZnczEkjpgEE" />
-    <meta name="description" content="Plataforma gratuita de conscientização e treinamento contra golpes financeiros, sites falsos e engenharia social.">
+    <meta name="description" content="Plataforma gratuita de conscientização e treinamento contra golpes financeiros, sites falsos e engenharia social. Especializado em Segurança Digital e Cibersegurança.">
     <meta name="keywords" content="escudo cidadão, segurança digital, golpes, fraudes, osint, detran falso, leilão falso">
     <meta name="author" content="Ronieryson Pereira Virginio">
     <title>Escudo Digital Cidadão</title>
@@ -20,10 +20,8 @@
             <p class="lead">Aprenda a se proteger contra fraudes e engenharia social.</p>
         </div>
 
-        <!-- Abas de Navegação -->
         <ul class="nav nav-pills nav-justified mb-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <!-- O botão agora só fica ativo se o verificador não estiver em uso -->
                 <button class="nav-link {% if not mostrar_analise %}active{% endif %}" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab">📞 Treinamento de Ligações</button>
             </li>
             <li class="nav-item" role="presentation">
@@ -62,7 +60,6 @@
                     </div>
                 </div>
             </div>
-<!-- O seu código atual que carrega o quiz e as perguntas fica logo abaixo desta linha -->
                 <div class="card shadow-sm">
                     <div class="card-header bg-dark text-white">Simulador Prático: Não caia na lábia</div>
                     <div class="card-body text-center" id="quiz-container">
@@ -73,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Módulo Novo: Simulador de WhatsApp -->
+            <!-- Módulo Simulador de WhatsApp -->
             <div class="tab-pane fade" id="zap" role="tabpanel">
                 <style>
                     .zap-container { max-width: 400px; margin: 0 auto; background: #efeae2; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -92,7 +89,6 @@
                 </style>
 
                 <div class="zap-container">
-                    <!-- Cabeçalho do Zap -->
                     <div class="zap-header">
                         <div class="zap-avatar">⚖️</div>
                         <div>
@@ -101,20 +97,17 @@
                         </div>
                     </div>
 
-                    <!-- Área de Mensagens -->
                     <div class="zap-body" id="zap-chat">
                         <!-- O chat começa vazio, o JS vai preencher -->
                     </div>
                     <div class="typing-indicator" id="zap-typing">digitando...</div>
 
-                    <!-- Input e Botão -->
                     <div class="zap-footer">
                         <input type="text" id="zap-input" class="zap-input" placeholder="Digite uma mensagem..." autocomplete="off">
                         <button class="zap-btn" id="zap-send" onclick="enviarMensagem()">➤</button>
                     </div>
                 </div>
 
-                <!-- Alerta Final (A Lição do Investigador) -->
                 <div class="zap-alert shadow" id="zap-alerta-final">
                     🚨 FIM DE JOGO! 🚨<br><br>
                     Você acabou de vivenciar o <strong>Golpe do Falso Advogado</strong>.<br><br>
@@ -218,7 +211,6 @@
                         Análise Investigativa de Domínio
                     </div>
                     <div class="card-body">
-                        <!-- Explicação didática sobre o funcionamento da ferramenta -->
                         <div class="alert alert-info shadow-sm mb-4">
                             <h6 class="alert-heading fw-bold">🔍 Como essa ferramenta te protege?</h6>
                             <p class="mb-0 small">
@@ -247,7 +239,7 @@
                 </div>
             </div>
 
-            <!-- Módulo Novo: 3 Preço do Golpe -->
+            <!-- Módulo 3 Preço do Golpe -->
             <div class="tab-pane fade" id="impacto" role="tabpanel">
                 <!-- Alerta Máximo -->
                 <div class="alert bg-danger text-white shadow-sm text-center mb-4">
@@ -256,7 +248,6 @@
                 </div>
 
                 <div class="row g-4 mb-4">
-                    <!-- Coluna da Dor de Cabeça -->
                     <div class="col-md-6">
                         <div class="card h-100 border-danger shadow-sm">
                             <div class="card-header bg-dark text-white fw-bold">
@@ -274,7 +265,6 @@
                         </div>
                     </div>
 
-                    <!-- Coluna das Iscas -->
                     <div class="col-md-6">
                         <div class="card h-100 border-warning shadow-sm">
                             <div class="card-header bg-warning text-dark fw-bold">
@@ -283,12 +273,19 @@
                             <div class="card-body">
                                 <p class="text-muted">A chantagem e a ganância são as maiores armas dos criminosos. Eles se reinventam todos os dias usando:</p>
                                 <div class="d-flex flex-wrap gap-2 mt-3">
-                                    <span class="badge bg-secondary fs-6 p-2">As vunerabilidades de algumas pessoas com vícios em Jogos</span>
+                                    <span class="badge bg-secondary fs-6 p-2">As Vunerabilidades de Algumas Pessoas com Vícios em Jogos</span>
                                     <span class="badge bg-secondary fs-6 p-2">Falsos Sites do Governo</span>
                                     <span class="badge bg-secondary fs-6 p-2">Falsas Vitórias Judiciais</span>
                                     <span class="badge bg-secondary fs-6 p-2">Leilões Fantasmas</span>
                                     <span class="badge bg-secondary fs-6 p-2">Falsas Centrais Bancárias</span>
                                     <span class="badge bg-secondary fs-6 p-2">Tarefas Remuneradas</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Golpes em Vendas de Veículos em Classificados</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Golpistas se Aproveitando de Sites como OLX</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Golpes utilizando Instagram </span>
+                                    <span class="badge bg-secondary fs-6 p-2">Falsos Superiores da Empresa ou Órgão que Você trabalha</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Estelionato Religioso, Promessas de Cura, Uso da Fé</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Falso Namorado Virtual</span>
+                                    <span class="badge bg-secondary fs-6 p-2">Estelionato Amoroso</span>
                                 </div>
                                 <div class="alert alert-warning mt-4 mb-0 fw-bold text-center">
                                     Só existe uma defesa eficaz: A MENTALIDADE PREVENTIVA. Desconfie de tudo.
@@ -297,8 +294,7 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Estudos e Pesquisas Recentes -->
+                
                 <h4 class="text-primary fw-bold mb-3 border-bottom pb-2">A Epidemia no Brasil (Dados Reais)</h4>
                 <div class="row g-3">
                     <div class="col-md-4">
