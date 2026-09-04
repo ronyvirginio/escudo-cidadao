@@ -12,7 +12,7 @@ def index():
     ip_visitante = request.headers.get('X-Forwarded-For', request.remote_addr)
     metadados = request.headers.get('User-Agent')
     hora_acesso = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    print(f"[NOVO ACESSO] Data: {hora_acesso} | IP Real: {ip_visitante} | Info: {metadados}", flush=True)-
+    print(f"[NOVO ACESSO] Data: {hora_acesso} | IP Real: {ip_visitante} | Info: {metadados}", flush=True)
     return render_template('index.html', mostrar_analise=False)
 
 
