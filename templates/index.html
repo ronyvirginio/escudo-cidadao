@@ -27,6 +27,9 @@
                 <button class="nav-link {% if not mostrar_analise %}active{% endif %}" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab">📞 Treinamento de Ligações</button>
             </li>
             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="zap-tab" data-bs-toggle="pill" data-bs-target="#zap" type="button" role="tab">💬 Simulador de Golpe</button>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link {% if mostrar_analise %}active{% endif %}" id="osint-tab" data-bs-toggle="pill" data-bs-target="#osint" type="button" role="tab">🌐 Verificador de Sites</button>
             </li>
             <li class="nav-item" role="presentation">
@@ -70,7 +73,144 @@
                     </div>
                 </div>
             </div>
+            <!-- Módulo Novo: Simulador de WhatsApp -->
+            <div class="tab-pane fade" id="zap" role="tabpanel">
+                <style>
+                    .zap-container { max-width: 400px; margin: 0 auto; background: #efeae2; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+                    .zap-header { background: #075e54; color: white; padding: 10px 15px; display: flex; align-items: center; }
+                    .zap-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ccc; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+                    .zap-body { height: 400px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); }
+                    .msg { max-width: 85%; padding: 8px 12px; border-radius: 7px; margin-bottom: 10px; position: relative; font-size: 14px; box-shadow: 0 1px 1px rgba(0,0,0,0.1); word-wrap: break-word; }
+                    .msg-bot { background: #ffffff; align-self: flex-start; border-top-left-radius: 0; }
+                    .msg-user { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; }
+                    .zap-footer { background: #f0f0f0; padding: 10px; display: flex; align-items: center; }
+                    .zap-input { flex: 1; border: none; padding: 10px 15px; border-radius: 20px; outline: none; margin-right: 10px; }
+                    .zap-btn { background: #128c7e; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+                    .typing-indicator { font-style: italic; color: #128c7e; font-size: 12px; display: none; margin-bottom: 10px; align-self: flex-start; background: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 10px;}
+                    .zap-alert { display: none; background: #dc3545; color: white; padding: 15px; text-align: center; border-radius: 8px; margin-top: 10px; font-weight: bold; animation: popIn 0.5s ease; }
+                    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+                </style>
 
+                <div class="zap-container">
+                    <!-- Cabeçalho do Zap -->
+                    <div class="zap-header">
+                        <div class="zap-avatar">⚖️</div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Dr. Carlos - Advocacia</h6>
+                            <small id="zap-status" style="opacity: 0.8;">online</small>
+                        </div>
+                    </div>
+
+                    <!-- Área de Mensagens -->
+                    <div class="zap-body" id="zap-chat">
+                        <!-- O chat começa vazio, o JS vai preencher -->
+                    </div>
+                    <div class="typing-indicator" id="zap-typing">digitando...</div>
+
+                    <!-- Input e Botão -->
+                    <div class="zap-footer">
+                        <input type="text" id="zap-input" class="zap-input" placeholder="Digite uma mensagem..." autocomplete="off">
+                        <button class="zap-btn" id="zap-send" onclick="enviarMensagem()">➤</button>
+                    </div>
+                </div>
+
+                <!-- Alerta Final (A Lição do Investigador) -->
+                <div class="zap-alert shadow" id="zap-alerta-final">
+                    🚨 FIM DE JOGO! 🚨<br><br>
+                    Você acabou de vivenciar o <strong>Golpe do Falso Advogado</strong>.<br><br>
+                    <span style="font-size: 14px; font-weight: normal;">
+                        Golpistas clonam a foto do seu advogado, sabem o número do seu processo (que é público) e fingem que você ganhou a causa. A isca é o dinheiro fácil, mas o bote é a "guia de liberação" cobrada via PIX.<br><br>
+                        <strong>Regra de Ouro:</strong> Nenhum juiz, tribunal ou advogado exige pagamento antecipado via PIX em nome de pessoas físicas para "liberar alvará". Se pediram PIX para liberar dinheiro, é GOLPE.
+                    </span>
+                    <br><br>
+                    <button class="btn btn-light btn-sm fw-bold text-danger" onclick="reiniciarZap()">Testar Novamente</button>
+                </div>
+
+                <script>
+                    const chat = document.getElementById('zap-chat');
+                    const input = document.getElementById('zap-input');
+                    const typing = document.getElementById('zap-typing');
+                    const alertBox = document.getElementById('zap-alerta-final');
+
+                    let etapa = 0;
+
+                    // O Roteiro do Golpista
+                    const roteiro = [
+                        "Olá! Aqui é do escritório do Dr. Carlos. Falo com o(a) autor(a) do processo?",
+                        "Excelente notícia! 🎉 O juiz acabou de assinar o seu alvará. A causa foi ganha no valor de R$ 85.000,00!",
+                        "Para o dinheiro cair na sua conta hoje até as 16h, o Tribunal exige apenas o pagamento da guia de custas finais de liberação.",
+                        "A guia ficou no valor de R$ 1.250,00. Posso te enviar a chave PIX do cartório para adiantarmos isso?"
+                    ];
+
+                    // Inicia a conversa automaticamente após 1 segundo
+                    setTimeout(() => acionarBot(), 1000);
+
+                    function adicionarMensagem(texto, tipo) {
+                        const div = document.createElement('div');
+                        div.className = `msg ${tipo}`;
+                        div.textContent = texto;
+                        chat.appendChild(div);
+                        chat.scrollTop = chat.scrollHeight; // Rola para o final
+                    }
+
+                    function mostrarDigitando(tempo, callback) {
+                        typing.style.display = 'block';
+                        document.getElementById('zap-status').innerText = 'digitando...';
+                        setTimeout(() => {
+                            typing.style.display = 'none';
+                            document.getElementById('zap-status').innerText = 'online';
+                            callback();
+                        }, tempo);
+                    }
+
+                    function acionarBot() {
+                        if (etapa < roteiro.length) {
+                            mostrarDigitando(1500 + Math.random() * 1000, () => {
+                                adicionarMensagem(roteiro[etapa], 'msg-bot');
+                                etapa++;
+                            });
+                        } else {
+                            // Se o bot já falou tudo, trava o input e mostra a lição
+                            setTimeout(() => {
+                                document.querySelector('.zap-footer').style.display = 'none';
+                                alertBox.style.display = 'block';
+                            }, 1000);
+                        }
+                    }
+
+                    function enviarMensagem() {
+                        const texto = input.value.trim();
+                        if (texto === "") return;
+
+                        adicionarMensagem(texto, 'msg-user');
+                        input.value = '';
+
+                        // Independente do que o cidadão responde, o golpista ignora e continua o roteiro
+                        if (etapa < roteiro.length) {
+                            acionarBot();
+                        } else {
+                            document.querySelector('.zap-footer').style.display = 'none';
+                            alertBox.style.display = 'block';
+                        }
+                    }
+
+                    // Permite enviar apertando Enter
+                    input.addEventListener("keypress", function(event) {
+                        if (event.key === "Enter") {
+                            event.preventDefault();
+                            enviarMensagem();
+                        }
+                    });
+
+                    function reiniciarZap() {
+                        chat.innerHTML = '';
+                        alertBox.style.display = 'none';
+                        document.querySelector('.zap-footer').style.display = 'flex';
+                        etapa = 0;
+                        setTimeout(() => acionarBot(), 1000);
+                    }
+                </script>
+            </div>
             <!-- Módulo 2: Verificador de Sites -->
             <div class="tab-pane fade {% if mostrar_analise %}show active{% endif %}" id="osint" role="tabpanel">
                 <div class="card shadow-sm">
