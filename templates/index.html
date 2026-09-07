@@ -538,6 +538,31 @@
 
         carregarPergunta();
     </script>
+<!-- Cookies (LGPD) -->
+<div id="cookieConsent" class="fixed-bottom bg-dark text-white p-3 d-none shadow-lg" style="z-index: 1050;">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <p class="mb-2 mb-md-0 small">
+            🛡️ <strong>Privacidade:</strong> Utilizamos cookies para monitorar estatísticas de acesso e melhorar nosso projeto de extensão. Ao continuar navegando, você concorda com esta política.
+        </p>
+        <button class="btn btn-primary btn-sm fw-bold px-4" onclick="aceitarCookies()">Entendi</button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Verifica se o usuário já clicou em "Entendi" no passado
+        if (!localStorage.getItem("cookies_aceitos")) {
+            // Se não, remove a classe 'd-none' para mostrar a barra
+            document.getElementById("cookieConsent").classList.remove("d-none");
+        }
+    });
+
+    function aceitarCookies() {
+        // Salva no navegador que o usuário aceitou
+        localStorage.setItem("cookies_aceitos", "true");
+        // Adiciona a classe 'd-none' para esconder a barra imediatamente
+        document.getElementById("cookieConsent").classList.add("d-none");
+    }
+</script>
 <footer class="text-center mt-5 mb-4 text-muted">
     <hr>
     <small>
