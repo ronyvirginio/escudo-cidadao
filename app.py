@@ -39,9 +39,9 @@ def index():
     print(f"[NOVO ACESSO] Data: {hora_acesso} | IP Real: {ip_visitante} | Info: {metadados}", flush=True)
     return render_template('index.html', mostrar_analise=False)
 
-@app.route('/robots.txt')
+'''@app.route('/robots.txt')
 def robots_txt():
-    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
+    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}'''
 
 
 @app.route('/analise', methods=['POST'])
