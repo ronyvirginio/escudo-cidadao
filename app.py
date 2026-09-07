@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, abort
+from flask import Flask, render_template, request, send_file, abort, send_from_directory
 import whois
 from datetime import datetime
 from urllib.parse import urlparse
@@ -43,6 +43,9 @@ def index():
 def robots_txt():
     return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}'''
 
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'robots.txt')
 
 @app.route('/analise', methods=['POST'])
 def analise_site():
