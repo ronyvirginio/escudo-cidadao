@@ -595,6 +595,38 @@
         document.getElementById("cookieConsent").classList.add("d-none");
     }
 </script>
+    <!-- Participação da Sociedade -->
+<div class="modal fade" id="modalCartilha" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold">Preencha para Baixar</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning small mb-3">
+                        <strong>Termo de Pesquisa:</strong> Para baixar o PDF gratuito, preencha os dados abaixo. Eles serão utilizados exclusivamente para estatísticas do projeto universitário Escudo Cidadão.
+                    </div>
+                    <!-- Formulário enviando para o Python -->
+                    <form action="/baixar_cartilha" method="POST" onsubmit="setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('modalCartilha')).hide(), 1000);">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nome Completo</label>
+                            <input type="text" class="form-control" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">E-mail</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Cidade / Estado</label>
+                            <input type="text" class="form-control" name="cidade" placeholder="Ex: Barra de São Francisco - ES" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 fw-bold btn-lg">Concordar e Fazer Download</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <footer class="text-center mt-5 mb-4 text-muted">
     <hr>
     <small>
