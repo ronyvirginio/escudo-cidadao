@@ -111,5 +111,31 @@ def baixar_cartilha():
     return send_file(caminho_pdf, as_attachment=True)
 
 
+@app.route('/admin_relatorio')
+def admin_relatorio():
+    todos_cidadaos = Cidadao.query.all()
+
+    html = """
+    <h2>Relatório de Acessos - Escudo Cidadão</h2>
+    <table border='1' cellpadding='10' style='border-collapse: collapse; width: 100%; font-family: Arial;'>
+        <tr style='background-color: #f2f2f2;'>
+            <th>ID</th><th>Nome</th><th>E-mail</th><th>Cidade</th><th>IP</th><th>Data de Acesso</th>
+        </tr>
+    """
+
+    for pessoa in todos_cidadaos:
+        html += f"""
+        <tr>
+            <td>{pessoa.id}</td>
+            <td>{pessoa.nome}</td>
+            <td>{pessoa.email}</td>
+            <td>{pessoa.cidade}</td>
+            <td>{pessoa.ip}</td>
+            <td>{pessoa.data_acesso}</td>
+        </tr>
+        """
+
+    html += "</table>"
+    return html
 if __name__ == '__main__':
     app.run(debug=True)
