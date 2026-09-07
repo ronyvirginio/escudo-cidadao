@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, abort
 import whois
 from datetime import datetime
 from urllib.parse import urlparse
@@ -109,6 +109,11 @@ def baixar_cartilha():
 
 @app.route('/admin_relatorio')
 def admin_relatorio():
+    senha_secreta = os.environ.get('ADMIN_SENHA')
+
+    if not senha_secreta or request.args.get('senha') != senha_secreta:
+        abort(403)
+    todos_cidadaos = Cidadao.query.all()
     todos_cidadaos = Cidadao.query.all()
 
     html = """
