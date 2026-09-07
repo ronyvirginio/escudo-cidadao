@@ -45,7 +45,7 @@ def robots_txt():
 
 @app.route('/robots.txt')
 def robots_txt():
-    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'robots.txt')
+    return send_from_directory(os.path.dirname(os.path.abspath(__file__)), 'robots.txt'), 200, {'Content-Type': 'text/plain'}
 
 @app.route('/analise', methods=['POST'])
 def analise_site():
