@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="dark">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-68P4DQ0TW6"></script>
     <script>
@@ -15,125 +15,473 @@
     <meta name="keywords" content="escudo cidadão, segurança digital, golpes, fraudes, osint, detran falso, leilão falso">
     <meta name="author" content="Ronieryson Pereira Virginio">
     <title>Escudo Digital Cidadão</title>
+
+    <!-- Fonte Moderna (Inter) + Bootstrap 5.3 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0b1120;
+            --bg-card: rgba(15, 23, 42, 0.78);
+            --border-subtle: rgba(148, 163, 184, 0.16);
+            --accent-cyan: #38bdf8;
+            --accent-blue: #2563eb;
+            --accent-emerald: #10b981;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.16) 0%, transparent 40%),
+                radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.10) 0%, transparent 35%),
+                radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho Hero */
+        .hero-header {
+            padding: 2rem 1rem 1.5rem;
+        }
+
+        .hero-logo {
+            width: 88px;
+            height: 88px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+
+        /* Menu de Navegação Moderno */
+        .nav-cyber {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 8px;
+            gap: 6px;
+        }
+
+        .nav-cyber .nav-link {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            padding: 10px 14px;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-cyber .nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-cyber .nav-link.active {
+            background: linear-gradient(135deg, #2563eb 0%, #0284c7 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        /* Cards com efeito Glassmorphism */
+        .cyber-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .cyber-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .cyber-card .card-header {
+            background: rgba(30, 41, 59, 0.7);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+        }
+
+        /* Caixas de destaque */
+        .info-banner {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-left: 4px solid var(--accent-emerald);
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        .info-banner-blue {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 14px;
+            padding: 1.25rem;
+        }
+
+        /* Botões do Quiz */
+        .quiz-option-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .quiz-option-btn:hover:not(:disabled) {
+            background: rgba(37, 99, 235, 0.2);
+            border-color: var(--accent-cyan);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        /* Listas no tema escuro */
+        .list-group-cyber .list-group-item {
+            background: transparent;
+            border-color: var(--border-subtle);
+            color: #e2e8f0;
+            padding: 1rem 1.25rem;
+            transition: background 0.2s ease;
+        }
+
+        .list-group-cyber .list-group-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Badges de golpes */
+        .scam-badge {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .scam-badge:hover {
+            border-color: #f59e0b;
+            color: #fbbf24;
+            transform: translateY(-2px);
+        }
+
+        /* Animação suave nas abas */
+        .tab-pane.show {
+            animation: fadeUp 0.35s ease;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Simulador WhatsApp (Modo Escuro Realista) */
+        .zap-container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: #0b141a;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px solid #1e293b;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .zap-header {
+            background: #202c33;
+            color: #e9edef;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .zap-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #2a3942;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .zap-body {
+            height: 400px;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #0b141a;
+            background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 18px 18px;
+        }
+        .msg {
+            max-width: 85%;
+            padding: 9px 13px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.45;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            word-wrap: break-word;
+            animation: popIn 0.25s ease;
+        }
+        .msg-bot {
+            background: #202c33;
+            color: #e9edef;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+        }
+        .msg-user {
+            background: #005c4b;
+            color: #e9edef;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+        }
+        .zap-footer {
+            background: #202c33;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .zap-input {
+            flex: 1;
+            border: none;
+            background: #2a3942;
+            color: #e9edef;
+            padding: 10px 16px;
+            border-radius: 22px;
+            outline: none;
+            font-size: 14px;
+        }
+        .zap-input::placeholder {
+            color: #8696a0;
+        }
+        .zap-btn {
+            background: #00a884;
+            color: #0b141a;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.15s ease, background 0.2s ease;
+        }
+        .zap-btn:hover {
+            background: #06cf9c;
+            transform: scale(1.05);
+        }
+        .typing-indicator {
+            font-style: italic;
+            color: #00a884;
+            font-size: 12px;
+            display: none;
+            margin: 0 16px 8px;
+            align-self: flex-start;
+        }
+        .zap-alert {
+            display: none;
+            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 16px;
+            margin: 18px auto 0;
+            max-width: 520px;
+            font-weight: bold;
+            animation: popIn 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        @keyframes popIn {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Input de URL e Formulários */
+        .form-control {
+            background-color: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: #ffffff;
+            border-radius: 10px;
+        }
+        .form-control:focus {
+            background-color: rgba(15, 23, 42, 1);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.2);
+            color: #ffffff;
+        }
+
+        /* Cookie Banner */
+        .cookie-bar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(56, 189, 248, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container mt-4 mb-5">
-        <div class="text-center mb-4">
-            <div class="d-flex justify-content-center align-items-center mb-2">
-                 <img src="{{ url_for('static', filename='escudo.jpg') }}" alt="Escudo Inovador" width="105" class="me-3 drop-shadow">
-                 <h1 class="text-primary mb-0">Escudo Digital Cidadão</h1>
+<body>
+    <div class="container mt-3 mb-5">
+        <!-- Cabeçalho -->
+        <div class="hero-header text-center">
+            <span class="hero-badge">🛡️ Defesa Cibernética Gratuita</span>
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
+                 <img src="{{ url_for('static', filename='escudo.jpg') }}" alt="Escudo Digital Cidadão" class="hero-logo">
+                 <h1 class="hero-title display-5 mb-0">Escudo Digital Cidadão</h1>
             </div>
-            <p class="lead">Aprenda a se proteger contra fraudes e engenharia social.</p>
+            <p class="lead text-secondary mb-0">Aprenda na prática a se proteger contra fraudes, sites falsos e engenharia social.</p>
         </div>
 
-        <ul class="nav nav-pills nav-justified mb-4" id="myTab" role="tablist">
+        <!-- Navegação por Abas -->
+        <ul class="nav nav-pills nav-justified nav-cyber mb-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link {% if not mostrar_analise %}active{% endif %}" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab">📞 Treinamento de Ligações</button>
+                <button class="nav-link {% if not mostrar_analise %}active{% endif %}" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#quiz" type="button" role="tab">📞 Treinamento</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="zap-tab" data-bs-toggle="pill" data-bs-target="#zap" type="button" role="tab">💬 Simulador de Golpe</button>
+                <button class="nav-link" id="zap-tab" data-bs-toggle="pill" data-bs-target="#zap" type="button" role="tab">💬 Simulador Zap</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link {% if mostrar_analise %}active{% endif %}" id="osint-tab" data-bs-toggle="pill" data-bs-target="#osint" type="button" role="tab">🌐 Verificador de Sites</button>
+                <button class="nav-link {% if mostrar_analise %}active{% endif %}" id="osint-tab" data-bs-toggle="pill" data-bs-target="#osint" type="button" role="tab">🌐 Verificar Site</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="impacto-tab" data-bs-toggle="pill" data-bs-target="#impacto" type="button" role="tab">🚨 O Preço do Golpe</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="bo-tab" data-bs-toggle="pill" data-bs-target="#bo" type="button" role="tab">📝 Caí no Golpe, O que Faço?</button>
+                <button class="nav-link" id="bo-tab" data-bs-toggle="pill" data-bs-target="#bo" type="button" role="tab">📝 Caí no Golpe</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="cartilha-tab" data-bs-toggle="pill" data-bs-target="#aba-cartilha" type="button" role="tab">📥 Baixe sua Cartilha</button>
+                <button class="nav-link" id="cartilha-tab" data-bs-toggle="pill" data-bs-target="#aba-cartilha" type="button" role="tab">📥 Cartilha PDF</button>
             </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
+
             <!-- Módulo 1: Simulador de Ligações -->
             <div class="tab-pane fade {% if not mostrar_analise %}show active{% endif %}" id="quiz" role="tabpanel">
-                <!-- Módulo de Apresentação do Quiz -->
-            <div class="alert shadow-sm mb-4" style="background-color: #e8f5e9; border-left: 5px solid #198754; color: #1e4620;">
-                <h5 class="fw-bold mb-3">
-                    🎧 A principal arma do crime é a sua própria mente
-                </h5>
-                <p class="mb-2">
-                    Hoje, os golpistas raramente usam "hackers" ou vírus complexos para roubar dinheiro. Eles utilizam a <strong>Engenharia Social</strong>: técnicas de manipulação psicológica desenhadas para gerar urgência, medo ou ganância, fazendo com que <strong>você mesmo</strong> entregue suas senhas ou transfira valores.
-                </p>
-                <hr style="border-color: #198754; opacity: 0.3;">
-                <div class="d-flex align-items-center mt-3">
-                    <div class="fs-1 me-3">🚨</div>
-                    <div>
-                        <p class="mb-0 fw-bold">O Seu Desafio:</p>
-                        <p class="mb-0 small">
-                            Este simulador interativo recria abordagens criminosas reais baseadas em boletins de ocorrência. Teste seus reflexos, tome decisões sob pressão e descubra se você consegue identificar a armadilha antes que seja tarde.
-                        </p>
-                    </div>
-                </div>
-            </div>
-                <div class="card shadow-sm">
-                    <div class="card-header bg-dark text-white">Simulador Prático: Não caia na lábia</div>
-                    <div class="card-body text-center" id="quiz-container">
-                        <h5 id="pergunta-texto" class="mb-4 text-start"></h5>
-                        <div id="botoes-opcoes" class="d-grid gap-2"></div>
-                        <div id="feedback-container" class="mt-4 p-3 rounded d-none"></div>
-                        <button id="btn-proximo" class="btn btn-secondary mt-3 d-none" onclick="proximaPergunta()">Próxima Situação ➔</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Módulo Simulador de WhatsApp -->
-            <div class="tab-pane fade" id="zap" role="tabpanel">
-                <!-- Explicação do Simulador -->
-                <div class="alert alert-primary shadow-sm mb-4 border-0" style="background-color: #e3f2fd;">
-                    <div class="d-flex align-items-center mb-2">
-                        <span class="fs-2 me-3">🧠</span>
-                        <h5 class="fw-bold text-primary mb-0">Como funciona este Simulador?</h5>
-                    </div>
-                    <p class="text-dark mb-3">
-                        Hoje, os criminosos não precisam invadir o seu celular para roubar o seu dinheiro; eles invadem a sua mente. Este simulador é um ambiente seguro projetado para você vivenciar a <strong>pressão psicológica de um golpe em tempo real</strong>, entendendo as táticas usadas pelos estelionatários.
+                <div class="info-banner mb-4">
+                    <h5 class="fw-bold mb-2 text-success">
+                        🎧 A principal arma do crime é a sua própria mente
+                    </h5>
+                    <p class="mb-2 text-light opacity-75">
+                        Hoje, os golpistas raramente usam "hackers" ou vírus complexos para roubar dinheiro. Eles utilizam a <strong class="text-white">Engenharia Social</strong>: técnicas de manipulação psicológica desenhadas para gerar urgência, medo ou ganância, fazendo com que <strong class="text-white">você mesmo</strong> entregue suas senhas ou transfira valores.
                     </p>
-                    <div class="bg-white p-3 rounded shadow-sm mb-0">
-                        <h6 class="fw-bold text-dark">🎯 O Cenário: O Falso Advogado</h6>
-                        <p class="small text-muted mb-2">
+                    <hr class="border-success opacity-25">
+                    <div class="d-flex align-items-center mt-3">
+                        <div class="fs-2 me-3">🚨</div>
+                        <div>
+                            <p class="mb-0 fw-bold text-white">O Seu Desafio:</p>
+                            <p class="mb-0 small text-secondary">
+                                Este simulador interativo recria abordagens criminosas reais baseadas em boletins de ocorrência. Teste seus reflexos, tome decisões sob pressão e descubra se você consegue identificar a armadilha antes que seja tarde.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card cyber-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>📞 Simulador Prático: Não caia na lábia</span>
+                        <span class="badge bg-primary bg-opacity-25 text-info border border-info border-opacity-25" id="quiz-progresso-texto">Situação 1 de 4</span>
+                    </div>
+                    <div class="progress rounded-0" style="height: 4px; background: rgba(255,255,255,0.05);">
+                        <div id="quiz-barra" class="progress-bar bg-info" role="progressbar" style="width: 25%; transition: width 0.4s ease;"></div>
+                    </div>
+                    <div class="card-body p-4" id="quiz-container">
+                        <h5 id="pergunta-texto" class="mb-4 text-start lh-base text-white"></h5>
+                        <div id="botoes-opcoes" class="d-grid gap-2"></div>
+                        <div id="feedback-container" class="mt-4 p-3 rounded-3 d-none"></div>
+                        <div class="text-center">
+                            <button id="btn-proximo" class="btn btn-info fw-bold px-4 mt-3 d-none" onclick="proximaPergunta()">Próxima Situação ➔</button>
+                            <button id="btn-reiniciar-quiz" class="btn btn-outline-light fw-bold px-4 mt-3 d-none" onclick="reiniciarQuiz()">🔄 Refazer Treinamento</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 2: Simulador de WhatsApp -->
+            <div class="tab-pane fade" id="zap" role="tabpanel">
+                <div class="info-banner-blue mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="fs-3 me-2">🧠</span>
+                        <h5 class="fw-bold text-info mb-0">Como funciona este Simulador?</h5>
+                    </div>
+                    <p class="text-light opacity-75 mb-3">
+                        Hoje, os criminosos não precisam invadir o seu celular para roubar o seu dinheiro; eles invadem a sua mente. Este simulador é um ambiente seguro projetado para você vivenciar a <strong class="text-white">pressão psicológica de um golpe em tempo real</strong>, entendendo as táticas usadas pelos estelionatários.
+                    </p>
+                    <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(148,163,184,0.15);">
+                        <h6 class="fw-bold text-white">🎯 O Cenário: O Falso Advogado</h6>
+                        <p class="small text-secondary mb-2">
                             Baseado em boletins de ocorrência reais, o sistema abaixo reproduzirá o comportamento exato de um criminoso se passando por um advogado. O roteiro é sempre o mesmo:
                         </p>
-                        <ul class="small text-muted mb-2">
-                            <li><strong>A Abordagem:</strong> Amigável e profissional, usando dados públicos para ganhar sua confiança.</li>
-                            <li><strong>A Isca:</strong> Uma excelente notícia financeira (causa ganha, herança, indenização).</li>
-                            <li><strong>O Bote:</strong> A criação de urgência para o pagamento de uma "taxa de liberação" ou "custas de cartório" antecipada via PIX.</li>
+                        <ul class="small text-secondary mb-2">
+                            <li><strong class="text-light">A Abordagem:</strong> Amigável e profissional, usando dados públicos para ganhar sua confiança.</li>
+                            <li><strong class="text-light">A Isca:</strong> Uma excelente notícia financeira (causa ganha, herança, indenização).</li>
+                            <li><strong class="text-light">O Bote:</strong> A criação de urgência para o pagamento de uma "taxa de liberação" ou "custas de cartório" antecipada via PIX.</li>
                         </ul>
-                        <p class="small fw-bold text-danger mb-0 mt-3">
-                            Sua Missão: Interaja com o chat abaixo. Responda o golpista, questione-o ou tente argumentar. Observe como ele ignora sua lógica e tenta forçar o pagamento a qualquer custo. Treine o seu cérebro para não cair na vida real!
+                        <p class="small fw-bold text-warning mb-0 mt-3">
+                            Sua Missão: Interaja com o chat abaixo. Responda o golpista, questione-o ou tente argumentar. Observe como ele ignora sua lógica e tenta forçar o pagamento a qualquer custo.
                         </p>
                     </div>
                 </div>
-                <style>
-                    .zap-container { max-width: 400px; margin: 0 auto; background: #efeae2; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-                    .zap-header { background: #075e54; color: white; padding: 10px 15px; display: flex; align-items: center; }
-                    .zap-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ccc; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-                    .zap-body { height: 400px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); }
-                    .msg { max-width: 85%; padding: 8px 12px; border-radius: 7px; margin-bottom: 10px; position: relative; font-size: 14px; box-shadow: 0 1px 1px rgba(0,0,0,0.1); word-wrap: break-word; }
-                    .msg-bot { background: #ffffff; align-self: flex-start; border-top-left-radius: 0; }
-                    .msg-user { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; }
-                    .zap-footer { background: #f0f0f0; padding: 10px; display: flex; align-items: center; }
-                    .zap-input { flex: 1; border: none; padding: 10px 15px; border-radius: 20px; outline: none; margin-right: 10px; }
-                    .zap-btn { background: #128c7e; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-                    .typing-indicator { font-style: italic; color: #128c7e; font-size: 12px; display: none; margin-bottom: 10px; align-self: flex-start; background: rgba(255,255,255,0.8); padding: 2px 8px; border-radius: 10px;}
-                    .zap-alert { display: none; background: #dc3545; color: white; padding: 15px; text-align: center; border-radius: 8px; margin-top: 10px; font-weight: bold; animation: popIn 0.5s ease; }
-                    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-                </style>
 
                 <div class="zap-container">
                     <div class="zap-header">
                         <div class="zap-avatar">⚖️</div>
                         <div>
                             <h6 class="mb-0 fw-bold">Dr. Carlos - Advocacia</h6>
-                            <small id="zap-status" style="opacity: 0.8;">online</small>
+                            <small id="zap-status" style="color: #8696a0;">online</small>
                         </div>
                     </div>
 
-                    <div class="zap-body" id="zap-chat">
-                        <!-- O chat começa vazio, o JS vai preencher -->
-                    </div>
+                    <div class="zap-body" id="zap-chat"></div>
                     <div class="typing-indicator" id="zap-typing">digitando...</div>
 
                     <div class="zap-footer">
@@ -145,249 +493,110 @@
                 <div class="zap-alert shadow" id="zap-alerta-final">
                     🚨 FIM DE JOGO! 🚨<br><br>
                     Você acabou de vivenciar o <strong>Golpe do Falso Advogado</strong>.<br><br>
-                    <span style="font-size: 14px; font-weight: normal;">
+                    <span style="font-size: 14px; font-weight: normal; display: block; line-height: 1.5;">
                         Golpistas clonam a foto do seu advogado, sabem o número do seu processo (que é público) e fingem que você ganhou a causa. A isca é o dinheiro fácil, mas o bote é a "guia de liberação" cobrada via PIX.<br><br>
                         <strong>Regra de Ouro:</strong> Nenhum juiz, tribunal ou advogado exige pagamento antecipado via PIX em nome de pessoas físicas para "liberar alvará". Se pediram PIX para liberar dinheiro, é GOLPE.
                     </span>
-                    <br><br>
-                    <button class="btn btn-light btn-sm fw-bold text-danger" onclick="reiniciarZap()">Testar Novamente</button>
+                    <br>
+                    <button class="btn btn-light btn-sm fw-bold text-danger px-4" onclick="reiniciarZap()">🔄 Testar Novamente</button>
                 </div>
-
-                <script>
-                    const chat = document.getElementById('zap-chat');
-                    const input = document.getElementById('zap-input');
-                    const typing = document.getElementById('zap-typing');
-                    const alertBox = document.getElementById('zap-alerta-final');
-
-                    let estadoAtual = 'inicio';
-
-                    // O Cérebro do Golpista (Máquina de Estados)
-                    const cerebroBot = {
-                        'inicio': {
-                            msg: "Olá! Aqui é do escritório do Dr. Carlos. Falo com o(a) autor(a) do processo?",
-                            proximo: function(resposta) {
-                                const texto = resposta.toLowerCase();
-                                // Se a pessoa disser que NÃO é o autor ou perguntar QUEM é
-                                if (texto.includes('não') || texto.includes('nao') || texto.includes('quem')) {
-                                    return 'parente';
-                                }
-                                // Se a pessoa perguntar QUAL processo
-                                else if (texto.includes('qual') || texto.includes('processo')) {
-                                    return 'duvida_processo';
-                                }
-                                // Se disser SIM ou qualquer outra coisa
-                                return 'noticia_boa';
-                            }
-                        },
-                        'parente': {
-                            msg: "Ah, entendo! Por favor, repasse esse recado urgente para o autor: o juiz acabou de assinar o alvará! A causa foi ganha no valor de R$ 85.000,00! 🎉",
-                            proximo: function() { return 'taxa_liberacao'; }
-                        },
-                        'duvida_processo': {
-                            msg: "O processo que estava aguardando liberação final. Tenho uma excelente notícia: o juiz acabou de assinar! A causa foi ganha no valor de R$ 85.000,00! 🎉",
-                            proximo: function() { return 'taxa_liberacao'; }
-                        },
-                        'noticia_boa': {
-                            msg: "Excelente notícia! 🎉 O juiz acabou de assinar o seu alvará. A causa foi ganha no valor de R$ 85.000,00!",
-                            proximo: function() { return 'taxa_liberacao'; }
-                        },
-                        'taxa_liberacao': {
-                            msg: "Para o dinheiro cair na sua conta hoje até as 16h, o Tribunal exige apenas o pagamento da guia de custas finais de liberação. Ficou em R$ 1.250,00.",
-                            proximo: function(resposta) {
-                                const texto = resposta.toLowerCase();
-                                // Se a vítima mandar descontar do valor que vai receber
-                                if (texto.includes('desconta') || texto.includes('tira') || texto.includes('abate')) {
-                                    return 'pressao_desconto';
-                                }
-                                // Se a vítima desconfiar e falar de golpe ou polícia
-                                else if (texto.includes('golpe') || texto.includes('policia') || texto.includes('fraude')) {
-                                    return 'pressao_golpe';
-                                }
-                                // Se a vítima aceitar ou não questionar a taxa
-                                return 'envia_pix';
-                            }
-                        },
-                        'pressao_desconto': {
-                            msg: "Infelizmente o sistema do Tribunal não permite descontar do valor do alvará, pois é uma guia federal. Se não for paga hoje, o processo volta pro fim da fila e demora meses. Posso mandar a chave PIX do cartório para não perdermos o prazo?",
-                            proximo: function() { return 'fim'; }
-                        },
-                        'pressao_golpe': {
-                            msg: "Senhor(a), somos um escritório sério, se ofender nosso trabalho vou devolver o processo pro arquivo. A liberação é oficial. Vai querer a chave PIX do cartório para receber os 85 mil hoje ou vai deixar pra lá?",
-                            proximo: function() { return 'fim'; }
-                        },
-                        'envia_pix': {
-                            msg: "Posso te enviar a chave PIX do cartório para adiantarmos isso e eu já te mandar o comprovante de transferência do Tribunal?",
-                            proximo: function() { return 'fim'; }
-                        },
-                        'fim': {
-                            msg: "",
-                            proximo: function() { return 'fim'; }
-                        }
-                    };
-
-                    // Inicia a conversa
-                    setTimeout(() => acionarBot(), 1000);
-
-                    function adicionarMensagem(texto, tipo) {
-                        const div = document.createElement('div');
-                        div.className = `msg ${tipo}`;
-                        div.textContent = texto;
-                        chat.appendChild(div);
-                        chat.scrollTop = chat.scrollHeight;
-                    }
-
-                    function mostrarDigitando(tempo, callback) {
-                        typing.style.display = 'block';
-                        document.getElementById('zap-status').innerText = 'digitando...';
-                        setTimeout(() => {
-                            typing.style.display = 'none';
-                            document.getElementById('zap-status').innerText = 'online';
-                            callback();
-                        }, tempo);
-                    }
-
-                    function acionarBot() {
-                        const logicaAtual = cerebroBot[estadoAtual];
-
-                        if (estadoAtual !== 'fim') {
-                            mostrarDigitando(1500 + Math.random() * 1500, () => {
-                                adicionarMensagem(logicaAtual.msg, 'msg-bot');
-                            });
-                        } else {
-                            // Fim do golpe, mostra o alerta
-                            setTimeout(() => {
-                                document.querySelector('.zap-footer').style.display = 'none';
-                                alertBox.style.display = 'block';
-                            }, 1000);
-                        }
-                    }
-
-                    function enviarMensagem() {
-                        const texto = input.value.trim();
-                        if (texto === "") return;
-
-                        adicionarMensagem(texto, 'msg-user');
-                        input.value = '';
-
-                        // O cérebro analisa o texto da vítima e define a próxima fala
-                        estadoAtual = cerebroBot[estadoAtual].proximo(texto);
-
-                        // O bot responde baseado no novo estado
-                        acionarBot();
-                    }
-
-                    input.addEventListener("keypress", function(event) {
-                        if (event.key === "Enter") {
-                            event.preventDefault();
-                            enviarMensagem();
-                        }
-                    });
-
-                    function reiniciarZap() {
-                        chat.innerHTML = '';
-                        alertBox.style.display = 'none';
-                        document.querySelector('.zap-footer').style.display = 'flex';
-                        estadoAtual = 'inicio';
-                        setTimeout(() => acionarBot(), 1000);
-                    }
-                </script>
             </div>
-            <!-- Módulo 2: Verificador de Sites -->
+
+            <!-- Módulo 3: Verificador de Sites -->
             <div class="tab-pane fade {% if mostrar_analise %}show active{% endif %}" id="osint" role="tabpanel">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white fw-bold">
-                        Análise Investigativa de Domínio
+                <div class="card cyber-card">
+                    <div class="card-header text-info">
+                        🌐 Análise Investigativa de Domínio (WHOIS / OSINT)
                     </div>
-                    <div class="card-body">
-                        <div class="alert alert-info shadow-sm mb-4">
-                            <h6 class="alert-heading fw-bold">🔍 Como essa ferramenta te protege?</h6>
-                            <p class="mb-0 small">
+                    <div class="card-body p-4">
+                        <div class="info-banner-blue mb-4">
+                            <h6 class="fw-bold text-info">🔍 Como essa ferramenta te protege?</h6>
+                            <p class="mb-0 small text-light opacity-75">
                                 Golpistas criam sites falsos (falsos leilões, falsas páginas do Detran ou promoções) que ficam no ar por pouquíssimo tempo.
-                                Nossa ferramenta faz uma varredura automática nos registros globais da internet (WHOIS) e calcula a <strong>idade exata</strong> do site.
+                                Nossa ferramenta faz uma varredura automática nos registros globais da internet (WHOIS) e calcula a <strong class="text-white">idade exata</strong> do site.
                                 Empresas reais e órgãos públicos possuem sites registrados há anos. Se um site suspeito foi criado há poucos dias ou meses, a chance de fraude é quase certa.
                             </p>
                         </div>
 
                         <form action="/analise" method="POST">
                             <div class="mb-3">
-                                <label class="form-label fw-bold">Cole o link suspeito aqui (ex: www.detran-pagamentos.com):</label>
-                                <input type="text" class="form-control form-control-lg" name="url" placeholder="https://" required>
+                                <label class="form-label fw-bold text-light">Cole o link suspeito aqui (ex: www.detran-pagamentos.com):</label>
+                                <input type="text" class="form-control form-control-lg" name="url" placeholder="https://exemplo-suspeito.com" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">Consultar Registro Oficial</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold shadow">🔎 Consultar Registro Oficial</button>
                         </form>
 
                         {% if alerta %}
-                        <div class="alert {{ classe_alerta }} mt-4 shadow-sm">
+                        <div class="alert {{ classe_alerta }} mt-4 shadow-sm rounded-3">
                             <strong>Analisado:</strong> {{ url_testada }}
                             <hr>
-                            <p class="mb-0">{{ alerta }}</p>
+                            <p class="mb-0 fw-semibold">{{ alerta }}</p>
                         </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
 
-            <!-- Módulo 3 Preço do Golpe -->
+            <!-- Módulo 4: O Preço do Golpe -->
             <div class="tab-pane fade" id="impacto" role="tabpanel">
-                <!-- Alerta Máximo -->
-                <div class="alert bg-danger text-white shadow-sm text-center mb-4">
-                    <h2 class="fw-bold mb-3">BILHÕES DE REAIS ROUBADOS TODOS OS ANOS</h2>
-                    <p class="lead mb-0">Existem centenas de formas de cair em um golpe hoje. O prejuízo financeiro é apenas o começo do pesadelo.</p>
+                <div class="p-4 rounded-4 text-center mb-4 shadow" style="background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%); border: 1px solid rgba(248, 113, 113, 0.4);">
+                    <h2 class="fw-bold mb-2 text-white">BILHÕES DE REAIS ROUBADOS TODOS OS ANOS</h2>
+                    <p class="lead mb-0 text-white-50">Existem centenas de formas de cair em um golpe hoje. O prejuízo financeiro é apenas o começo do pesadelo.</p>
                 </div>
 
                 <div class="row g-4 mb-4">
                     <div class="col-md-6">
-                        <div class="card h-100 border-danger shadow-sm">
-                            <div class="card-header bg-dark text-white fw-bold">
-                                A Dor de Cabeça Real
+                        <div class="card cyber-card h-100 border-danger border-opacity-50">
+                            <div class="card-header text-danger">
+                                ⚠️ A Dor de Cabeça Real
                             </div>
                             <div class="card-body">
-                                <p class="text-muted">Quando um golpista invade sua vida digital, o estrago é devastador:</p>
-                                <ul class="list-group list-group-flush">
+                                <p class="text-secondary small">Quando um golpista invade sua vida digital, o estrago é devastador:</p>
+                                <ul class="list-group list-group-flush list-group-cyber">
                                     <li class="list-group-item">🏦 <strong>Burocracia Extrema:</strong> Horas perdidas em agências bancárias tentando provar que você foi vítima e acionando mecanismos bancários.</li>
                                     <li class="list-group-item">💳 <strong>Clonagem e Dívidas:</strong> Cartões de crédito clonados e descontos indevidos de empréstimos feitos em seu nome.</li>
                                     <li class="list-group-item">⚖️ <strong>Ações Judiciais:</strong> Processos longos e desgastantes para tentar limpar seu nome no Serasa ou processando instituições financeiras na tentativa de reaver o dinheiro.</li>
                                     <li class="list-group-item">🧠 <strong>Frustração Psicológica:</strong> A sensação de invasão, culpa e impotência diante da perda das suas economias.</li>
-                                    <li class="list-group-item">‍👩‍👧‍👦 <strong>Dano Familiar:</strong> Dinheiro para pagar contas de casa e da Família sendo desviado pelos golpistas. Conflitos Familiares.</li>
-                                    <li class="list-group-item">‍💉 <strong>Reflexos na Saúde:</strong> Ansiedade, Stress, Noites Mal Dormidas, Depressão, Transtornos Psiquiátricos, Delírios diversos.</li>
-                                    <li class="list-group-item">😭 <strong>Pensamentos Suicidas:</strong> A Sensação de Derrota, as Dívidas, Separação Conjugal, Empréstimos e outras Culpas podem levar a pessoa a ideias de autoextermínio.</li>
+                                    <li class="list-group-item">👨‍👩‍👧‍👦 <strong>Dano Familiar:</strong> Dinheiro para pagar contas de casa e da família sendo desviado pelos golpistas, gerando conflitos familiares.</li>
+                                    <li class="list-group-item">🩺 <strong>Reflexos na Saúde:</strong> Ansiedade, estresse, noites mal dormidas, depressão e transtornos psiquiátricos.</li>
+                                    <li class="list-group-item">🆘 <strong>Risco Emocional Grave:</strong> A sensação de derrota, dívidas e separações podem levar a quadros severos de sofrimento psíquico. Se precisar de apoio emocional, ligue <strong>188 (CVV)</strong>.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="card h-100 border-warning shadow-sm">
-                            <div class="card-header bg-warning text-dark fw-bold">
-                                O Arsenal dos Golpistas
+                        <div class="card cyber-card h-100 border-warning border-opacity-50">
+                            <div class="card-header text-warning">
+                                🎯 O Arsenal dos Golpistas
                             </div>
-                            <div class="card-body">
-                                <p class="text-muted">A chantagem e a ganância são as maiores armas dos criminosos. Eles se reinventam todos os dias usando:</p>
-                                <div class="d-flex flex-wrap gap-2 mt-3">
-                                    <span class="badge bg-secondary fs-6 p-2">Falsos Sites do Governo</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Falsas Vitórias Judiciais</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Leilões Fantasmas</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Falsas Centrais Bancárias</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Tarefas Remuneradas</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Sim Swap</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Falsas Vendas em Classificados</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpes em Bets</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpistas se Aproveitando de Sites como OLX</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpes utilizando Instagram </span>
-                                    <span class="badge bg-secondary fs-6 p-2">Falsos Superiores da Empresa ou Órgão que Você trabalha</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Estelionato Religioso e Promessas de Milagres</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Fraude com Cartões</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Falso Namorado Virtual</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Estelionato Amoroso</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Cheques sem Fundo</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpistas em Sites de Acompanhantes </span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpes no Tigrinho</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Golpes de Vendas de Celulares e Eletrônicos em Geral</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Reconhecimento Facial e Biometrias</span>
-                                    <span class="badge bg-secondary fs-6 p-2">Influenciadores </span>
-                                    <span class="badge bg-secondary fs-6 p-2">Dentre Outras Fraudes</span>
+                            <div class="card-body d-flex flex-column">
+                                <p class="text-secondary small">A chantagem e a ganância são as maiores armas dos criminosos. Eles se reinventam todos os dias usando:</p>
+                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                    <span class="scam-badge">Falsos Sites do Governo</span>
+                                    <span class="scam-badge">Falsas Vitórias Judiciais</span>
+                                    <span class="scam-badge">Leilões Fantasmas</span>
+                                    <span class="scam-badge">Falsas Centrais Bancárias</span>
+                                    <span class="scam-badge">Tarefas Remuneradas</span>
+                                    <span class="scam-badge">Sim Swap</span>
+                                    <span class="scam-badge">Falsas Vendas em Classificados</span>
+                                    <span class="scam-badge">Golpes em Bets</span>
+                                    <span class="scam-badge">Golpes em Plataformas como OLX</span>
+                                    <span class="scam-badge">Golpes utilizando Instagram</span>
+                                    <span class="scam-badge">Falsos Superiores no Trabalho</span>
+                                    <span class="scam-badge">Estelionato Religioso</span>
+                                    <span class="scam-badge">Fraude com Cartões</span>
+                                    <span class="scam-badge">Falso Namorado Virtual</span>
+                                    <span class="scam-badge">Estelionato Amoroso</span>
+                                    <span class="scam-badge">Cheques sem Fundo</span>
+                                    <span class="scam-badge">Golpes em Sites de Acompanhantes</span>
+                                    <span class="scam-badge">Golpes no Tigrinho</span>
+                                    <span class="scam-badge">Vendas Falsas de Eletrônicos</span>
+                                    <span class="scam-badge">Fraudes de Biometria Facial</span>
+                                    <span class="scam-badge">Falsos Influenciadores</span>
+                                    <span class="scam-badge">Dentre Outras Fraudes</span>
                                 </div>
-                                <div class="alert alert-warning mt-4 mb-0 fw-bold text-center">
+                                <div class="alert alert-warning mt-auto mb-0 fw-bold text-center mt-4">
                                     Só existe uma defesa eficaz: A MENTALIDADE PREVENTIVA. Desconfie de tudo.
                                 </div>
                             </div>
@@ -395,230 +604,127 @@
                     </div>
                 </div>
 
-                <h4 class="text-primary fw-bold mb-3 border-bottom pb-2">A Epidemia no Brasil (Dados Reais)</h4>
+                <h4 class="text-info fw-bold mb-3 pb-2 border-bottom border-secondary border-opacity-25">📊 A Epidemia no Brasil (Dados Reais)</h4>
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h1 class="text-danger fw-bold">45 Mi</h1>
-                                <p class="fw-bold">Tentativas de Golpe</p>
-                                <p class="small text-muted">Pesquisa aponta que 45 milhões de brasileiros já sofreram tentativas de golpe online.</p>
-                                <a href="https://noticias.r7.com/jr-24h/boletim-jr-24h/video/pesquisa-aponta-que-45-milhoes-de-brasileiros-ja-sofreram-tentativas-de-golpe-online-01092026/" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: R7 (Set/2026)</a>
+                        <div class="card cyber-card cyber-card-hover h-100">
+                            <div class="card-body text-center d-flex flex-column p-4">
+                                <h1 class="text-danger fw-bold display-5">45 Mi</h1>
+                                <p class="fw-bold text-white mb-1">Tentativas de Golpe</p>
+                                <p class="small text-secondary">Pesquisa aponta que 45 milhões de brasileiros já sofreram tentativas de golpe online.</p>
+                                <a href="https://noticias.r7.com/jr-24h/boletim-jr-24h/video/pesquisa-aponta-que-45-milhoes-de-brasileiros-ja-sofreram-tentativas-de-golpe-online-01092026/" target="_blank" class="btn btn-outline-info btn-sm mt-auto">Fonte: R7 (Set/2026)</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h1 class="text-danger fw-bold">258</h1>
-                                <p class="fw-bold">Golpes por Hora</p>
-                                <p class="small text-muted">A incidência do crime quintuplicou no Brasil desde 2018.</p>
-                                <a href="https://www1.folha.uol.com.br/cotidiano/2026/07/brasileiros-sofreram-258-golpes-por-hora-em-2025-crime-quintuplicou-desde-2018.shtml" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: Folha (Jul/2026)</a>
+                        <div class="card cyber-card cyber-card-hover h-100">
+                            <div class="card-body text-center d-flex flex-column p-4">
+                                <h1 class="text-danger fw-bold display-5">258</h1>
+                                <p class="fw-bold text-white mb-1">Golpes por Hora</p>
+                                <p class="small text-secondary">A incidência do crime quintuplicou no Brasil desde 2018.</p>
+                                <a href="https://www1.folha.uol.com.br/cotidiano/2026/07/brasileiros-sofreram-258-golpes-por-hora-em-2025-crime-quintuplicou-desde-2018.shtml" target="_blank" class="btn btn-outline-info btn-sm mt-auto">Fonte: Folha (Jul/2026)</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h1 class="text-danger fw-bold">4 Golpes por Minuto em 2025</h1>
-                                <p class="fw-bold">Você é um alvo</p>
-                                <p class="small text-muted">A explosão da criminalidade digital e os golpes registrados por minuto no país.</p>
-                                <a href="https://g1.globo.com/politica/noticia/2026/07/23/golpes-registrados-por-minuto-anuario-seguranca-publica.ghtml" target="_blank" class="btn btn-outline-primary btn-sm mt-auto">Fonte: G1 (Jul/2026)</a>
+                        <div class="card cyber-card cyber-card-hover h-100">
+                            <div class="card-body text-center d-flex flex-column p-4">
+                                <h1 class="text-danger fw-bold display-5">4/min</h1>
+                                <p class="fw-bold text-white mb-1">4 Golpes por Minuto em 2025</p>
+                                <p class="small text-secondary">A explosão da criminalidade digital e os golpes registrados por minuto no país.</p>
+                                <a href="https://g1.globo.com/politica/noticia/2026/07/23/golpes-registrados-por-minuto-anuario-seguranca-publica.ghtml" target="_blank" class="btn btn-outline-info btn-sm mt-auto">Fonte: G1 (Jul/2026)</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Módulo 3: Ocorrência e Cartilha -->
+            <!-- Módulo 5: Ocorrência -->
             <div class="tab-pane fade" id="bo" role="tabpanel">
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header bg-danger text-white">Caiu no golpe? Como agir:</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
+                <div class="card cyber-card border-danger border-opacity-50 mb-4">
+                    <div class="card-header bg-danger bg-opacity-25 text-danger">
+                        🚨 Caiu no golpe? Protocolo de Ação Imediata:
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush list-group-cyber">
                             <li class="list-group-item">🏦 <strong>Acione o Banco Imediatamente (M.E.D.):</strong> Se você fez um PIX, ligue para a central oficial do seu banco <strong>no mesmo minuto</strong> e exija a abertura do <strong>Mecanismo Especial de Devolução (MED)</strong>. O banco tentará bloquear o dinheiro na conta do golpista. Cada segundo conta.</li>
                             <li class="list-group-item">🏛️ <strong>Escale a Reclamação Oficialmente:</strong> Se o banco negar o ressarcimento via telefone, não desista. Abra uma reclamação formal contra a instituição no site <strong>Consumidor.gov.br</strong> e no portal do <strong>Banco Central do Brasil (BCB)</strong>. Os bancos possuem equipes dedicadas apenas para responder a esses canais sob prazos rigorosos.</li>
-                            <li class="list-group-item">⚖️ <strong>Prepare-se para a Via Judicial:</strong> Caso o banco negue o ressarcimento após o pedido do M.E.D. e as reclamações iniciais, não perca a esperança. Anote todos os números de protocolo, horários das ligações e guarde as respostas negativas. A Justiça brasileira entende que os bancos podem ser responsabilizados se seus sistemas de segurança falharem ao permitir transações que fogem totalmente do seu padrão normal de consumo. Com o Boletim de Ocorrência e esses protocolos em mãos, procure o Procon, O Juizado Especial, a Defensoria Pública ou um advogado de confiança.</li>
-                            <li class="list-group-item">✋ <strong>Mantenha a Calma e Não Busque Vingança:</strong> O sentimento de revolta é compreensível, mas jamais tente fazer justiça com as próprias mãos. Se você souber quem é o golpista ou desconfiar de alguém não adianta buscar vingança. Agir com violência ou ameaçar o suposto autor pode transformar você de vítima em réu de um crime grave, como ameaça ou homicídio. Faça o boletim de ocorrência, adote as dicas aqui reunidas, procure ajuda, mas não comprometa sua liberdade ou se prejudique.</li>
+                            <li class="list-group-item">⚖️ <strong>Prepare-se para a Via Judicial:</strong> Caso o banco negue o ressarcimento após o pedido do M.E.D. e as reclamações iniciais, não perca a esperança. Anote todos os números de protocolo, horários das ligações e guarde as respostas negativas. A Justiça brasileira entende que os bancos podem ser responsabilizados se seus sistemas de segurança falharem ao permitir transações que fogem totalmente do seu padrão normal de consumo. Com o Boletim de Ocorrência e esses protocolos em mãos, procure o Procon, o Juizado Especial, a Defensoria Pública ou um advogado de confiança.</li>
+                            <li class="list-group-item">✋ <strong>Mantenha a Calma e Não Busque Vingança:</strong> O sentimento de revolta é compreensível, mas jamais tente fazer justiça com as próprias mãos. Agir com violência ou ameaçar o suposto autor pode transformar você de vítima em réu de um crime grave. Faça o boletim de ocorrência, adote as dicas aqui reunidas e procure ajuda legal.</li>
                             <li class="list-group-item">🔒 <strong>Altere Senhas e Bloqueie Cartões:</strong> Troque as senhas do seu e-mail principal, redes sociais e apps de banco. Se passou dados do cartão, bloqueie-o imediatamente pelo aplicativo oficial.</li>
                             <li class="list-group-item">📢 <strong>Avise Familiares e Amigos:</strong> Golpistas usarão suas informações ou seu número (se foi clonado) para pedir dinheiro aos seus contatos. Faça um alerta rápido nas suas redes ou por ligação.</li>
                             <li class="list-group-item">💻 <strong>Delegacia Online:</strong> Se não puder ir à delegacia presencialmente no primeiro momento, a maioria dos estados (inclusive o Espírito Santo) permite o registro de Boletim de Ocorrência de fraudes e estelionatos virtuais diretamente pelo portal da Delegacia Online (Deon).</li>
                             <li class="list-group-item">🔍 <strong>Monitore o Registrato:</strong> Acesse o sistema "Registrato" do Banco Central nos dias seguintes para verificar se abriram contas, empresas ou fizeram empréstimos utilizando o seu CPF.</li>
-                            <li class="list-group-item">📱 <strong>Desconecte e Faça uma Varredura:</strong> Se você foi induzido a instalar algum aplicativo (como AnyDesk) ou clicou em links que baixaram arquivos, desconecte o aparelho da internet imediatamente (Modo Avião). Desinstale apps desconhecidos ou, em casos graves e se for o caso, restaure o celular para o padrão de fábrica.</li>
-                            <li class="list-group-item">⚠️ <strong>Alerta no Serasa e SPC:</strong> Se você enviou fotos dos seus documentos (RG, CNH, selfie), acesse o portal do Serasa e registre um alerta de documento extraviado/roubado. Isso ajuda a bloquear automaticamente a tentativa dos criminosos de abrirem crediários ou fazerem empréstimos em lojas com o seu nome.</li>
-                            <li class="list-group-item">🛑 <strong>Denuncie na Plataforma:</strong> Não basta apenas bloquear o golpista. Use o botão de "Denunciar" do próprio WhatsApp, Instagram ou Facebook. Isso ajuda os algoritmos da rede social a banirem o perfil ou derrubarem o anúncio falso, evitando que outras pessoas se tornem vítimas.</li>
-                            <li class="list-group-item">📸 <strong>Tire Prints:</strong> Capture a tela de todas as conversas e perfis.</li>
+                            <li class="list-group-item">📱 <strong>Desconecte e Faça uma Varredura:</strong> Se você foi induzido a instalar algum aplicativo (como AnyDesk) ou clicou em links que baixaram arquivos, desconecte o aparelho da internet imediatamente (Modo Avião). Desinstale apps desconhecidos ou, em casos graves, restaure o celular para o padrão de fábrica.</li>
+                            <li class="list-group-item">⚠️ <strong>Alerta no Serasa e SPC:</strong> Se você enviou fotos dos seus documentos (RG, CNH, selfie), acesse o portal do Serasa e registre um alerta de documento extraviado/roubado. Isso ajuda a bloquear automaticamente tentativas de empréstimos ou crediários em seu nome.</li>
+                            <li class="list-group-item">🛑 <strong>Denuncie na Plataforma:</strong> Não basta apenas bloquear o golpista. Use o botão de "Denunciar" do próprio WhatsApp, Instagram ou Facebook para ajudar a derrubar o perfil ou anúncio falso.</li>
+                            <li class="list-group-item">📸 <strong>Tire Prints:</strong> Capture a tela de todas as conversas, números e perfis envolvidos.</li>
                             <li class="list-group-item">🔗 <strong>Salve os Links:</strong> Anote a URL exata do site falso.</li>
-                            <li class="list-group-item">📧 <strong>Salve o Cabeçalho do E-mail (Header):</strong> Se a fraude iniciou por e-mail, um simples print não é suficiente. Acesse as opções da mensagem e exporte o "cabeçalho original". É neste texto técnico oculto que a polícia encontra o IP verdadeiro e os rastros do servidor utilizado pelo criminoso.</li>
-                            <li class="list-group-item">📄 <strong>Guarde os Comprovantes:</strong> Se você chegou a realizar algum pix ou transferência bancária, Salve os comprovantes, de preferência em PDF.</li>
-                            <li class="list-group-item">🚫 <strong>Não Apague Nada:</strong> A investigação precisa desses rastros digitais. Procure a delegacia com esse material.</li>
-                            <li class="list-group-item">🌐 <strong>Congele o Site Falso (Preservação de Página):</strong> Golpistas tiram sites do ar em poucas horas e prints de tela podem ser facilmente contestados. Se a página falsa ainda estiver no ar, utilize ferramentas gratuitas como o <em>archive.org</em> (Wayback Machine),HTTrack ou outra ferramenta similar para criar uma cópia técnica com data e hora, garantindo a materialidade do crime.</li>
-                            <li class="list-group-item">🎙️ <strong>Preserve Áudios e Arquivos Originais:</strong> Se você recebeu áudios, vídeos (deepfakes) ou boletos em PDF, não faça apenas a gravação da tela do celular. Exporte os arquivos originais e salve em um alguma mídia, como um pen drive ou nuvem. </li>
-                            <li class="list-group-item">🪙 <strong>Identificação de Criptoativos (TXID):</strong> Se o golpe envolveu falsos investimentos e envios de Bitcoin ou USDT, o extrato normal não ajuda. Você deve localizar e salvar a "Hash da Transação" (TXID) fornecida pela sua corretora. Como a blockchain é pública, esse pode ajudar a investigação para rastrear o caminho do dinheiro até a carteira final do estelionatário.</li>
+                            <li class="list-group-item">📧 <strong>Salve o Cabeçalho do E-mail (Header):</strong> Se a fraude iniciou por e-mail, um simples print não é suficiente. Exporte o "cabeçalho original" da mensagem, onde a polícia encontra o IP verdadeiro e os rastros do servidor utilizado pelo criminoso.</li>
+                            <li class="list-group-item">📄 <strong>Guarde os Comprovantes:</strong> Se você realizou algum PIX ou transferência bancária, salve os comprovantes, de preferência em PDF.</li>
+                            <li class="list-group-item">🚫 <strong>Não Apague Nada:</strong> A investigação precisa desses rastros digitais. Leve todo esse material à delegacia.</li>
+                            <li class="list-group-item">🌐 <strong>Congele o Site Falso (Preservação de Página):</strong> Golpistas tiram sites do ar em poucas horas. Se a página falsa ainda estiver ativa, utilize ferramentas gratuitas como o <em>archive.org</em> (Wayback Machine) ou HTTrack para criar uma cópia técnica com data e hora.</li>
+                            <li class="list-group-item">🎙️ <strong>Preserve Áudios e Arquivos Originais:</strong> Se você recebeu áudios, vídeos (deepfakes) ou boletos em PDF, exporte os arquivos originais e salve em um pen drive ou nuvem.</li>
+                            <li class="list-group-item">🪙 <strong>Identificação de Criptoativos (TXID):</strong> Se o golpe envolveu falsos investimentos e envios de Bitcoin ou USDT, salve a "Hash da Transação" (TXID) fornecida pela sua corretora para auxiliar no rastreamento na blockchain.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Tela de Download da Cartilha -->
-    <div class="tab-pane fade" id="aba-cartilha" role="tabpanel">
-                <div class="card shadow-sm border-success">
-                    <div class="card-header bg-success text-white fw-bold text-center fs-5">
-                        Guia de Proteção Digital
+
+            <!-- Módulo 6: Download da Cartilha (Corrigido dentro do tab-content) -->
+            <div class="tab-pane fade" id="aba-cartilha" role="tabpanel">
+                <div class="card cyber-card border-success border-opacity-50">
+                    <div class="card-header bg-success bg-opacity-25 text-success text-center fs-5">
+                        📘 Guia de Proteção Digital
                     </div>
                     <div class="card-body text-center p-5">
-                        <h4 class="fw-bold mb-3">Leve a segurança para você e sua família</h4>
-                        <p class="text-muted mb-4">
-                            Preparamos um material completo, em formato PDF, com todas as orientações para você identificar fraudes, proteger suas contas bancárias e não cair em golpes.
+                        <div class="display-4 mb-3">🛡️</div>
+                        <h3 class="fw-bold text-white mb-3">Leve a segurança para você e sua família</h3>
+                        <p class="text-secondary mb-4 mx-auto" style="max-width: 600px;">
+                            Preparamos um material completo, gratuito e em formato PDF, com orientações práticas para você identificar fraudes, proteger suas contas bancárias e não cair em golpes digitais.
                         </p>
-                        <!-- Este botão agora chama o Modal LGPD -->
-                        <button class="btn btn-success btn-lg fw-bold px-5 py-3" data-bs-toggle="modal" data-bs-target="#modalCartilha">
+                        <button class="btn btn-success btn-lg fw-bold px-5 py-3 shadow" data-bs-toggle="modal" data-bs-target="#modalCartilha">
                             📥 Baixar Cartilha em PDF
                         </button>
                     </div>
                 </div>
             </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const perguntas = [
-            {
-                cenario: "[Ligação 1] 'Olá, aqui é da segurança do seu banco. Identificamos uma compra suspeita de R$ 4.500,00. Para cancelar, confirme sua senha ou instale nosso app de proteção.'",
-                opcoes: ["A) Confirma a senha rapidamente.", "B) Instala o aplicativo recomendado.", "C) Mantém a calma, desliga e entra em contato com canais oficiais do seu banco.", "D) Realiza os comandos do atendente, como de digitar certos scripts." ],
-                correta: 2,
-                feedbackCorreto: "CORRETO! O banco nunca pede senha ou instalação de app por telefone.",
-                feedbackIncorreto: "ERRO CRÍTICO! Você deu acesso ao golpista."
-            },
-            {
-                cenario: "[Ligação 2] 'Boa tarde, falo do WhatsApp. Sua conta foi clonada. Para resolver, vou enviar um código de 6 dígitos por SMS. Me informe o código.'",
-                opcoes: ["A) Informa o código para recuperar a conta.", "B) Pergunta o nome do atendente antes e em seguida envia o código.", "C) Pede pro atendente ligar de outro número", "D) Desliga e não envia o Código." ],
-                correta: 3,
-                feedbackCorreto: "EXATO! Esse código é a chave de acesso. Nunca compartilhe.",
-                feedbackIncorreto: "FALHOU! Você acabou de entregar seu WhatsApp para o golpista."
-            },
-            {
-                cenario: "[Ligação 3] Voz robótica: 'Compra aprovada de R$ 5.900,00. Digite 1 para confirmar ou 2 para cancelar com nossa central.' Ao digitar 2, um atendente pede para você instalar o aplicativo 'AnyDesk' no celular para que ele possa bloquear a fraude.",
-                opcoes: [
-                    "A) Instala o aplicativo imediatamente, pois o cancelamento precisa ser rápido e a gravação parecia oficial.",
-                    "B) Pede o número de protocolo ao atendente para ter uma segurança formal e depois instala o app.",
-                    "C) Desliga a chamada imediatamente, Entre em contato com a instutição responsável pelo cartão de crédito para verificar a validade.",
-                    "D) Recusa o aplicativo, mas aceita fazer um 'PIX de validação' que o atendente prometeu devolver em dobro."
-                ],
-                correta: 2,
-                feedbackCorreto: "PERFEITO! Esse é o golpe da Falsa Central. Bancos NUNCA pedem para instalar aplicativos de suporte remoto. Ligar para o número oficial é a melhor defesa.",
-                feedbackIncorreto: "ERRO CRÍTICO! AnyDesk dão controle do seu aparelho ao golpista. Ele vai acessar o banco e esvaziar sua conta enquanto você assiste a tela se mexer sozinha."
-            },
-            {
-                cenario: "[Ligação 4] 'Mãe/Pai, sou eu. Meu celular quebrou, estou usando esse número provisório. Preciso de um PIX urgente para pagar o conserto.'",
-                opcoes: ["A) Faz o PIX rapidamente.", "B) Pede para mandar um áudio.", "C) Não se desespera, Não faz o PIX, Busca entrar em contato direto com seu filho.", "D) Pede pra ele mandar foto do celular quebrado." ],
-                correta: 2,
-                feedbackCorreto: "MUITO BEM! Sempre confirme por chamada de vídeo.",
-                feedbackIncorreto: "CUIDADO! Golpistas usam fotos roubadas. Ligue para o número antigo!"
-            }
-        ];
 
-        let atual = 0;
-        const perguntaTexto = document.getElementById("pergunta-texto");
-        const botoesContainer = document.getElementById("botoes-opcoes");
-        const feedbackContainer = document.getElementById("feedback-container");
-        const btnProximo = document.getElementById("btn-proximo");
+        </div> <!-- Fim tab-content -->
 
-        function carregarPergunta() {
-            feedbackContainer.classList.add("d-none");
-            btnProximo.classList.add("d-none");
-            perguntaTexto.innerText = perguntas[atual].cenario;
-            botoesContainer.innerHTML = "";
-
-            perguntas[atual].opcoes.forEach((opcao, index) => {
-                let btn = document.createElement("button");
-                btn.className = "btn btn-outline-primary text-start p-3";
-                btn.innerText = opcao;
-                btn.onclick = () => verificarResposta(index);
-                botoesContainer.appendChild(btn);
-            });
-        }
-
-        function verificarResposta(index) {
-            let acertou = index === perguntas[atual].correta;
-            feedbackContainer.classList.remove("d-none", "bg-success", "bg-danger", "text-white");
-
-            if(acertou) {
-                feedbackContainer.classList.add("bg-success", "text-white");
-                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackCorreto}</strong>`;
-            } else {
-                feedbackContainer.classList.add("bg-danger", "text-white");
-                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackIncorreto}</strong>`;
-            }
-
-            // Desabilita os botões
-            Array.from(botoesContainer.children).forEach(btn => btn.disabled = true);
-
-            if (atual < perguntas.length - 1) {
-                btnProximo.classList.remove("d-none");
-            } else {
-                btnProximo.innerText = "Treinamento Concluído!";
-                btnProximo.classList.remove("btn-secondary", "d-none");
-                btnProximo.classList.add("btn-success");
-                btnProximo.onclick = null;
-            }
-        }
-
-        function proximaPergunta() {
-            atual++;
-            carregarPergunta();
-        }
-
-        carregarPergunta();
-    </script>
-<!-- Cookies (LGPD) -->
-<div id="cookieConsent" class="fixed-bottom bg-dark text-white p-3 d-none shadow-lg" style="z-index: 1050;">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <p class="mb-2 mb-md-0 small">
-            🛡️ <strong>Privacidade:</strong> Utilizamos cookies para monitorar estatísticas de acesso e melhorar nosso projeto de extensão. Ao continuar navegando, você concorda com esta política.
-        </p>
-        <button class="btn btn-primary btn-sm fw-bold px-4" onclick="aceitarCookies()">Entendi</button>
+        <!-- Rodapé -->
+        <footer class="text-center mt-5 pt-4 text-secondary border-top border-secondary border-opacity-25">
+            <small>
+                Projeto de Extensão Universitária idealizado, mantido e desenvolvido por <strong class="text-light">Ronieryson Pereira Virginio</strong>.<br>
+                Contato para sugestões de melhoria, dúvidas ou contribuições: <a href="mailto:rony.vontade@gmail.com" class="text-info text-decoration-none">rony.vontade@gmail.com</a><br>
+                <a href="https://github.com/ronyvirginio/escudo-cidadao" target="_blank" class="btn btn-outline-secondary btn-sm mt-3">💻 Acessar código-fonte no GitHub</a>
+            </small>
+        </footer>
     </div>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Verifica se o usuário já clicou em "Entendi" no passado
-        if (!localStorage.getItem("cookies_aceitos")) {
-            // Se não, remove a classe 'd-none' para mostrar a barra
-            document.getElementById("cookieConsent").classList.remove("d-none");
-        }
-    });
 
-    function aceitarCookies() {
-        // Salva no navegador que o usuário aceitou
-        localStorage.setItem("cookies_aceitos", "true");
-        // Adiciona a classe 'd-none' para esconder a barra imediatamente
-        document.getElementById("cookieConsent").classList.add("d-none");
-    }
-</script>
-    <!-- Participação da Sociedade -->
-<div class="modal fade" id="modalCartilha" tabindex="-1" aria-hidden="true">
+    <!-- Modal LGPD / Download Cartilha -->
+    <div class="modal fade" id="modalCartilha" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title fw-bold">Preencha para Baixar</h5>
+            <div class="modal-content cyber-card border-success border-opacity-50">
+                <div class="modal-header bg-success bg-opacity-25 border-bottom border-success border-opacity-25">
+                    <h5 class="modal-title fw-bold text-success">📥 Preencha para Baixar</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div class="alert alert-warning small mb-3">
                         <strong>Termo de Pesquisa:</strong> Para baixar o PDF gratuito, preencha os dados abaixo. Eles serão utilizados exclusivamente para estatísticas do projeto universitário Escudo Cidadão.
                     </div>
-                    <!-- Formulário enviando para o Python -->
                     <form action="/baixar_cartilha" method="POST" onsubmit="setTimeout(() => bootstrap.Modal.getInstance(document.getElementById('modalCartilha')).hide(), 1000);">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Nome Completo</label>
+                            <label class="form-label fw-bold text-light">Nome Completo</label>
                             <input type="text" class="form-control" name="nome" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-bold">E-mail</label>
+                            <label class="form-label fw-bold text-light">E-mail</label>
                             <input type="email" class="form-control" name="email" required>
                         </div>
                         <div class="mb-4">
-                            <label class="form-label fw-bold">Cidade / Estado</label>
+                            <label class="form-label fw-bold text-light">Cidade / Estado</label>
                             <input type="text" class="form-control" name="cidade" placeholder="Ex: Barra de São Francisco - ES" required>
                         </div>
                         <button type="submit" class="btn btn-success w-100 fw-bold btn-lg">Concordar e Fazer Download</button>
@@ -627,13 +733,277 @@
             </div>
         </div>
     </div>
-<footer class="text-center mt-5 mb-4 text-muted">
-    <hr>
-    <small>
-        Projeto de Extensão Universitária idealizado, mantido e desenvolvido por <strong>Ronieryson Pereira Virginio</strong>.<br>
-        Contato para sugestões de melhoria, dúvidas, ou desejo de se comunicar com o projeto: <a href="mailto:rony.vontade@gmail.com" class="text-decoration-none">rony.vontade@gmail.com</a><br>
-        <a href="https://github.com/ronyvirginio/escudo-cidadao" target="_blank" class="text-decoration-none mt-1 d-inline-block">Acessar código-fonte no GitHub</a>
-    </small>
-</footer>
+
+    <!-- Cookies (LGPD) -->
+    <div id="cookieConsent" class="fixed-bottom cookie-bar text-white p-3 d-none shadow-lg" style="z-index: 1050;">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <p class="mb-0 small text-light opacity-75">
+                🛡️ <strong class="text-white">Privacidade:</strong> Utilizamos cookies para monitorar estatísticas de acesso e melhorar nosso projeto de extensão. Ao continuar navegando, você concorda com esta política.
+            </p>
+            <button class="btn btn-info btn-sm fw-bold px-4" onclick="aceitarCookies()">Entendi</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script do Simulador de Ligações -->
+    <script>
+        const perguntas = [
+            {
+                cenario: "[Ligação 1] 'Olá, aqui é da segurança do seu banco. Identificamos uma compra suspeita de R$ 4.500,00. Para cancelar, confirme sua senha ou instale nosso app de proteção.'",
+                opcoes: [
+                    "A) Confirma a senha rapidamente.",
+                    "B) Instala o aplicativo recomendado.",
+                    "C) Mantém a calma, desliga e entra em contato com canais oficiais do seu banco.",
+                    "D) Realiza os comandos do atendente, como digitar certos scripts."
+                ],
+                correta: 2,
+                feedbackCorreto: "✅ CORRETO! O banco nunca pede senha ou instalação de app por telefone.",
+                feedbackIncorreto: "❌ ERRO CRÍTICO! Você deu acesso ao golpista."
+            },
+            {
+                cenario: "[Ligação 2] 'Boa tarde, falo do WhatsApp. Sua conta foi clonada. Para resolver, vou enviar um código de 6 dígitos por SMS. Me informe o código.'",
+                opcoes: [
+                    "A) Informa o código para recuperar a conta.",
+                    "B) Pergunta o nome do atendente antes e em seguida envia o código.",
+                    "C) Pede pro atendente ligar de outro número.",
+                    "D) Desliga e não envia o código."
+                ],
+                correta: 3,
+                feedbackCorreto: "✅ EXATO! Esse código é a chave de acesso. Nunca compartilhe.",
+                feedbackIncorreto: "❌ FALHOU! Você acabou de entregar seu WhatsApp para o golpista."
+            },
+            {
+                cenario: "[Ligação 3] Voz robótica: 'Compra aprovada de R$ 5.900,00. Digite 1 para confirmar ou 2 para cancelar com nossa central.' Ao digitar 2, um atendente pede para você instalar o aplicativo 'AnyDesk' no celular para que ele possa bloquear a fraude.",
+                opcoes: [
+                    "A) Instala o aplicativo imediatamente, pois o cancelamento precisa ser rápido e a gravação parecia oficial.",
+                    "B) Pede o número de protocolo ao atendente para ter uma segurança formal e depois instala o app.",
+                    "C) Desliga a chamada imediatamente e entra em contato com a instituição responsável pelo cartão de crédito para verificar a validade.",
+                    "D) Recusa o aplicativo, mas aceita fazer um 'PIX de validação' que o atendente prometeu devolver em dobro."
+                ],
+                correta: 2,
+                feedbackCorreto: "✅ PERFEITO! Esse é o golpe da Falsa Central. Bancos NUNCA pedem para instalar aplicativos de suporte remoto. Ligar para o número oficial é a melhor defesa.",
+                feedbackIncorreto: "❌ ERRO CRÍTICO! O AnyDesk dá controle total do seu aparelho ao golpista. Ele vai acessar o banco e esvaziar sua conta enquanto você assiste a tela se mexer sozinha."
+            },
+            {
+                cenario: "[Ligação 4] 'Mãe/Pai, sou eu. Meu celular quebrou, estou usando esse número provisório. Preciso de um PIX urgente para pagar o conserto.'",
+                opcoes: [
+                    "A) Faz o PIX rapidamente.",
+                    "B) Pede para mandar um áudio.",
+                    "C) Não se desespera, não faz o PIX e busca entrar em contato direto com seu filho.",
+                    "D) Pede para ele mandar foto do celular quebrado."
+                ],
+                correta: 2,
+                feedbackCorreto: "✅ MUITO BEM! Sempre confirme por chamada de vídeo ou ligando para o número antigo.",
+                feedbackIncorreto: "❌ CUIDADO! Golpistas usam fotos roubadas e até áudios clonados. Ligue para o número antigo!"
+            }
+        ];
+
+        let atual = 0;
+        let acertos = 0;
+        const perguntaTexto = document.getElementById("pergunta-texto");
+        const botoesContainer = document.getElementById("botoes-opcoes");
+        const feedbackContainer = document.getElementById("feedback-container");
+        const btnProximo = document.getElementById("btn-proximo");
+        const btnReiniciarQuiz = document.getElementById("btn-reiniciar-quiz");
+        const progressoTexto = document.getElementById("quiz-progresso-texto");
+        const barraProgresso = document.getElementById("quiz-barra");
+
+        function carregarPergunta() {
+            feedbackContainer.classList.add("d-none");
+            btnProximo.classList.add("d-none");
+            btnReiniciarQuiz.classList.add("d-none");
+
+            progressoTexto.innerText = `Situação ${atual + 1} de ${perguntas.length}`;
+            barraProgresso.style.width = `${((atual + 1) / perguntas.length) * 100}%`;
+
+            perguntaTexto.innerText = perguntas[atual].cenario;
+            botoesContainer.innerHTML = "";
+
+            perguntas[atual].opcoes.forEach((opcao, index) => {
+                let btn = document.createElement("button");
+                btn.className = "btn quiz-option-btn";
+                btn.innerText = opcao;
+                btn.onclick = () => verificarResposta(index, btn);
+                botoesContainer.appendChild(btn);
+            });
+        }
+
+        function verificarResposta(index, botaoClicado) {
+            let acertou = index === perguntas[atual].correta;
+            feedbackContainer.classList.remove("d-none", "alert-success", "alert-danger");
+
+            if (acertou) {
+                acertos++;
+                botaoClicado.classList.add("border-success", "bg-success", "bg-opacity-25");
+                feedbackContainer.classList.add("alert", "alert-success");
+                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackCorreto}</strong>`;
+            } else {
+                botaoClicado.classList.add("border-danger", "bg-danger", "bg-opacity-25");
+                feedbackContainer.classList.add("alert", "alert-danger");
+                feedbackContainer.innerHTML = `<strong>${perguntas[atual].feedbackIncorreto}</strong>`;
+            }
+
+            Array.from(botoesContainer.children).forEach(btn => btn.disabled = true);
+
+            if (atual < perguntas.length - 1) {
+                btnProximo.classList.remove("d-none");
+            } else {
+                feedbackContainer.innerHTML += `<hr class="my-2"><div class="small">🏁 Treinamento concluído! Você acertou <strong>${acertos} de ${perguntas.length}</strong> situações.</div>`;
+                btnReiniciarQuiz.classList.remove("d-none");
+            }
+        }
+
+        function proximaPergunta() {
+            atual++;
+            carregarPergunta();
+        }
+
+        function reiniciarQuiz() {
+            atual = 0;
+            acertos = 0;
+            carregarPergunta();
+        }
+
+        carregarPergunta();
+    </script>
+
+    <!-- Script do Simulador de WhatsApp -->
+    <script>
+        const chat = document.getElementById('zap-chat');
+        const input = document.getElementById('zap-input');
+        const typing = document.getElementById('zap-typing');
+        const alertBox = document.getElementById('zap-alerta-final');
+
+        let estadoAtual = 'inicio';
+
+        const cerebroBot = {
+            'inicio': {
+                msg: "Olá! Aqui é do escritório do Dr. Carlos. Falo com o(a) autor(a) do processo?",
+                proximo: function(resposta) {
+                    const texto = resposta.toLowerCase();
+                    if (texto.includes('não') || texto.includes('nao') || texto.includes('quem')) {
+                        return 'parente';
+                    } else if (texto.includes('qual') || texto.includes('processo')) {
+                        return 'duvida_processo';
+                    }
+                    return 'noticia_boa';
+                }
+            },
+            'parente': {
+                msg: "Ah, entendo! Por favor, repasse esse recado urgente para o autor: o juiz acabou de assinar o alvará! A causa foi ganha no valor de R$ 85.000,00! 🎉",
+                proximo: function() { return 'taxa_liberacao'; }
+            },
+            'duvida_processo': {
+                msg: "O processo que estava aguardando liberação final. Tenho uma excelente notícia: o juiz acabou de assinar! A causa foi ganha no valor de R$ 85.000,00! 🎉",
+                proximo: function() { return 'taxa_liberacao'; }
+            },
+            'noticia_boa': {
+                msg: "Excelente notícia! 🎉 O juiz acabou de assinar o seu alvará. A causa foi ganha no valor de R$ 85.000,00!",
+                proximo: function() { return 'taxa_liberacao'; }
+            },
+            'taxa_liberacao': {
+                msg: "Para o dinheiro cair na sua conta hoje até as 16h, o Tribunal exige apenas o pagamento da guia de custas finais de liberação. Ficou em R$ 1.250,00.",
+                proximo: function(resposta) {
+                    const texto = resposta.toLowerCase();
+                    if (texto.includes('desconta') || texto.includes('tira') || texto.includes('abate')) {
+                        return 'pressao_desconto';
+                    } else if (texto.includes('golpe') || texto.includes('policia') || texto.includes('fraude')) {
+                        return 'pressao_golpe';
+                    }
+                    return 'envia_pix';
+                }
+            },
+            'pressao_desconto': {
+                msg: "Infelizmente o sistema do Tribunal não permite descontar do valor do alvará, pois é uma guia federal. Se não for paga hoje, o processo volta pro fim da fila e demora meses. Posso mandar a chave PIX do cartório para não perdermos o prazo?",
+                proximo: function() { return 'fim'; }
+            },
+            'pressao_golpe': {
+                msg: "Senhor(a), somos um escritório sério, se ofender nosso trabalho vou devolver o processo pro arquivo. A liberação é oficial. Vai querer a chave PIX do cartório para receber os 85 mil hoje ou vai deixar pra lá?",
+                proximo: function() { return 'fim'; }
+            },
+            'envia_pix': {
+                msg: "Posso te enviar a chave PIX do cartório para adiantarmos isso e eu já te mandar o comprovante de transferência do Tribunal?",
+                proximo: function() { return 'fim'; }
+            },
+            'fim': {
+                msg: "",
+                proximo: function() { return 'fim'; }
+            }
+        };
+
+        setTimeout(() => acionarBot(), 1000);
+
+        function adicionarMensagem(texto, tipo) {
+            const div = document.createElement('div');
+            div.className = `msg ${tipo}`;
+            div.textContent = texto;
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function mostrarDigitando(tempo, callback) {
+            typing.style.display = 'block';
+            document.getElementById('zap-status').innerText = 'digitando...';
+            setTimeout(() => {
+                typing.style.display = 'none';
+                document.getElementById('zap-status').innerText = 'online';
+                callback();
+            }, tempo);
+        }
+
+        function acionarBot() {
+            const logicaAtual = cerebroBot[estadoAtual];
+            if (estadoAtual !== 'fim') {
+                mostrarDigitando(1500 + Math.random() * 1500, () => {
+                    adicionarMensagem(logicaAtual.msg, 'msg-bot');
+                });
+            } else {
+                setTimeout(() => {
+                    document.querySelector('.zap-footer').style.display = 'none';
+                    alertBox.style.display = 'block';
+                }, 1000);
+            }
+        }
+
+        function enviarMensagem() {
+            const texto = input.value.trim();
+            if (texto === "") return;
+            adicionarMensagem(texto, 'msg-user');
+            input.value = '';
+            estadoAtual = cerebroBot[estadoAtual].proximo(texto);
+            acionarBot();
+        }
+
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                enviarMensagem();
+            }
+        });
+
+        function reiniciarZap() {
+            chat.innerHTML = '';
+            alertBox.style.display = 'none';
+            document.querySelector('.zap-footer').style.display = 'flex';
+            estadoAtual = 'inicio';
+            setTimeout(() => acionarBot(), 1000);
+        }
+    </script>
+
+    <!-- Script de Cookies LGPD -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem("cookies_aceitos")) {
+                document.getElementById("cookieConsent").classList.remove("d-none");
+            }
+        });
+
+        function aceitarCookies() {
+            localStorage.setItem("cookies_aceitos", "true");
+            document.getElementById("cookieConsent").classList.add("d-none");
+        }
+    </script>
 </body>
 </html>
